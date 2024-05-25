@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Compile Update="Main.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="src\Admin\PageCommands.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="src\Admin\PageTurnInfo.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="src\Controls\ButtonComand.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="src\Controls\ButtonNav.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="src\Controls\CellParamsInfo.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="src\Controls\TurnTrackBar.cs">
+      <SubType>Component</SubType>
+    </Compile>
+  </ItemGroup>
+</Project>
