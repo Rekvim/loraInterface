@@ -4,10 +4,10 @@
     <Compile Update="Main.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="src\Pages\PageCommands.cs">
+    <Compile Update="src\Admin\PageCommands.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Update="src\Pages\PageTurnInfo.cs">
+    <Compile Update="src\Admin\PageTurnInfo.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Update="src\Controls\ButtonComand.cs">
