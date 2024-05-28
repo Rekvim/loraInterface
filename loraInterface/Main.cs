@@ -1,23 +1,27 @@
+using System;
+using System.Threading;
+using System.Threading.Tasks;
+using System.Windows.Forms;
 using loraInterface.src.Admin;
-
-
 
 namespace loraInterface
 {
     public partial class Main : Form
     {
         private CommandPort commandPort;
-        public Main ()
+
+        public Main()
         {
             InitializeComponent();
         }
+
         private void Main_Load(object sender, EventArgs e)
         {
             // «апускаем обработку COM порта при загрузке формы
             commandPort = new CommandPort();
             commandPort.OpenPort();
             Task.Run(() => ReadDataFromPort());
-            label1.Text = commandPort.command; 
+            label1.Text = commandPort.command;
         }
 
         private void ReadDataFromPort()
@@ -29,6 +33,7 @@ namespace loraInterface
                 Thread.Sleep(1000);
             }
         }
+
         private void AddUserControl(UserControl userControl)
         {
             userControl.Dock = DockStyle.Fill;
@@ -36,6 +41,7 @@ namespace loraInterface
             panelContent.Controls.Add(userControl);
             userControl.BringToFront();
         }
+
         private void buttonNavTurnInfo_Click(object sender, EventArgs e)
         {
             PageTurnInfo turn_info = new PageTurnInfo();
@@ -44,10 +50,8 @@ namespace loraInterface
 
         private void buttonNavComands_Click(object sender, EventArgs e)
         {
-            PageCommands page_commands = new PageCommands();
+            PageCommands page_commands = new PageCommands(commandPort);
             AddUserControl(page_commands);
         }
     }
-
 }
-

@@ -1,33 +1,20 @@
-﻿using Newtonsoft.Json.Linq;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.IO.Ports;
+﻿using System.IO.Ports;
 using System.Text.RegularExpressions;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 public class CommandPort
 {
     private SerialPort serialPort;
     private StreamWriter writer;
-    public string command;
-    public bool sendData;
-    public string Command
-    {
-        get { return command; }
-        set { command = value; }
-    }
+    private object lockObject = new object(); // Объект для синхронизации доступа
 
-    public bool SendData
-    {
-        get { return sendData; }
-        set { sendData = value; }
-    }
+    public string command = ""; // Переменная для хранения текущей команды
+    public bool sendData = false; // Флаг для указания на необходимость отправки данных
 
-    public CommandPort(string portName = "COM9", int baudRate = 115200, Parity parity = Parity.None, int dataBits = 8, StopBits stopBits = StopBits.One)
+    public CommandPort(string portName = "COM5", int baudRate = 115200, Parity parity = Parity.None, int dataBits = 8, StopBits stopBits = StopBits.One)
     {
         serialPort = new SerialPort(portName, baudRate, parity, dataBits, stopBits);
     }
+
     public void OpenPort()
     {
         try
@@ -56,15 +43,29 @@ public class CommandPort
         {
             if (serialPort.IsOpen)
             {
+                lock (lockObject)
+                {
+                    if (sendData)
+                    {
+                        Thread.Sleep(1000);
+                        // Отправляем команду, если флаг sendData равен true
+                        SendCommand(command);
+                        sendData = false; // Сбрасываем флаг после отправки команды
+
+                        command = "";
+                        sendData = false;
+                    }
+                }
+
                 var data = serialPort.ReadLine().Trim();
                 Console.WriteLine($"{data}");
                 UpdateFromMessage(data);
-                Thread.Sleep(1000); // Делаем задержку в 1 секунду
+                LogDataToFile(data);
+
             }
             else
             {
                 Console.WriteLine("Port is not open.");
-
             }
         }
         catch (TimeoutException)
@@ -76,6 +77,20 @@ public class CommandPort
             Console.WriteLine($"Error reading from port {serialPort.PortName}: {e.Message}");
         }
     }
+    private void LogDataToFile(string data)
+    {
+        try
+        {
+            using (StreamWriter writer = new StreamWriter("SerialDataLog.txt", true))
+            {
+                writer.WriteLine($"{DateTime.Now}: {data}");
+            }
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine($"Error logging data to file: {e.Message}");
+        }
+    }
     public void SendCommand(string command)
     {
         try
@@ -83,6 +98,7 @@ public class CommandPort
             if (serialPort.IsOpen)
             {
                 serialPort.WriteLine(command);
+                Console.WriteLine($"Команда '{command}' отправлена.");
             }
             else
             {
@@ -98,8 +114,11 @@ public class CommandPort
     // Метод для установки новой команды и установки флага для отправки данных
     public void SetCommand(string newCommand)
     {
-        command = newCommand;
-        sendData = true; // Устанавливаем флаг для указания на необходимость отправки данных
+        lock (lockObject)
+        {
+            command = newCommand;
+            sendData = true; // Устанавливаем флаг для указания на необходимость отправки данных
+        }
     }
 
     public void UpdateFromMessage(string message)
@@ -107,7 +126,6 @@ public class CommandPort
         try
         {
             List<string> messages = new List<string>(message.Split('\n'));
-
 
             foreach (string msg in messages)
             {
