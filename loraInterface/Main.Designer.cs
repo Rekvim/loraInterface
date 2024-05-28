@@ -34,6 +34,7 @@
             buttonNav3 = new src.Controls.ButtonNav();
             buttonNavComands = new src.Controls.ButtonNav();
             buttonNavTurnInfo = new src.Controls.ButtonNav();
+            label1 = new Label();
             panelMain.SuspendLayout();
             panelBar.SuspendLayout();
             SuspendLayout();
@@ -44,27 +45,31 @@
             panelMain.Controls.Add(panelBar);
             panelMain.Dock = DockStyle.Fill;
             panelMain.Location = new Point(0, 0);
+            panelMain.Margin = new Padding(3, 2, 3, 2);
             panelMain.Name = "panelMain";
-            panelMain.Size = new Size(982, 563);
+            panelMain.Size = new Size(859, 422);
             panelMain.TabIndex = 0;
             // 
             // panelContent
             // 
             panelContent.Dock = DockStyle.Fill;
-            panelContent.Location = new Point(220, 0);
+            panelContent.Location = new Point(192, 0);
+            panelContent.Margin = new Padding(3, 2, 3, 2);
             panelContent.Name = "panelContent";
-            panelContent.Size = new Size(762, 563);
+            panelContent.Size = new Size(667, 422);
             panelContent.TabIndex = 1;
             // 
             // panelBar
             // 
+            panelBar.Controls.Add(label1);
             panelBar.Controls.Add(buttonNav3);
             panelBar.Controls.Add(buttonNavComands);
             panelBar.Controls.Add(buttonNavTurnInfo);
             panelBar.Dock = DockStyle.Left;
             panelBar.Location = new Point(0, 0);
+            panelBar.Margin = new Padding(3, 2, 3, 2);
             panelBar.Name = "panelBar";
-            panelBar.Size = new Size(220, 563);
+            panelBar.Size = new Size(192, 422);
             panelBar.TabIndex = 0;
             // 
             // buttonNav3
@@ -72,10 +77,10 @@
             buttonNav3.BackColor = Color.FromArgb(255, 255, 255);
             buttonNav3.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             buttonNav3.ForeColor = Color.Black;
-            buttonNav3.Location = new Point(0, 108);
+            buttonNav3.Location = new Point(0, 81);
             buttonNav3.Margin = new Padding(0);
             buttonNav3.Name = "buttonNav3";
-            buttonNav3.Size = new Size(220, 54);
+            buttonNav3.Size = new Size(192, 40);
             buttonNav3.TabIndex = 2;
             buttonNav3.Text = "buttonNav3";
             // 
@@ -84,10 +89,10 @@
             buttonNavComands.BackColor = Color.FromArgb(255, 255, 255);
             buttonNavComands.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             buttonNavComands.ForeColor = Color.Black;
-            buttonNavComands.Location = new Point(0, 54);
+            buttonNavComands.Location = new Point(0, 40);
             buttonNavComands.Margin = new Padding(0);
             buttonNavComands.Name = "buttonNavComands";
-            buttonNavComands.Size = new Size(220, 54);
+            buttonNavComands.Size = new Size(192, 40);
             buttonNavComands.TabIndex = 1;
             buttonNavComands.Text = "buttonNav2";
             buttonNavComands.Click += buttonNavComands_Click;
@@ -100,22 +105,34 @@
             buttonNavTurnInfo.Location = new Point(0, 0);
             buttonNavTurnInfo.Margin = new Padding(0);
             buttonNavTurnInfo.Name = "buttonNavTurnInfo";
-            buttonNavTurnInfo.Size = new Size(220, 54);
+            buttonNavTurnInfo.Size = new Size(192, 40);
             buttonNavTurnInfo.TabIndex = 0;
             buttonNavTurnInfo.Text = "buttonNav1";
             buttonNavTurnInfo.Click += buttonNavTurnInfo_Click;
             // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(6, 137);
+            label1.Name = "label1";
+            label1.Size = new Size(38, 15);
+            label1.TabIndex = 3;
+            label1.Text = "label1";
+            // 
             // Main
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(982, 563);
+            ClientSize = new Size(859, 422);
             Controls.Add(panelMain);
+            Margin = new Padding(3, 2, 3, 2);
             Name = "Main";
             Text = "loraInterface";
+            Load += Main_Load;
             panelMain.ResumeLayout(false);
             panelBar.ResumeLayout(false);
+            panelBar.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -127,5 +144,6 @@
         private src.Controls.ButtonNav buttonNavTurnInfo;
         private src.Controls.ButtonNav buttonNav3;
         private src.Controls.ButtonNav buttonNavComands;
+        private Label label1;
     }
 }

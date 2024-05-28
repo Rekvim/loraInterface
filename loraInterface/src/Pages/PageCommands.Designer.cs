@@ -34,6 +34,8 @@
             buttonComandReset = new Controls.ButtonComand();
             buttonComand5 = new Controls.ButtonComand();
             turnTrackBar1 = new Controls.TurnTrackBar();
+            label1 = new Label();
+            label2 = new Label();
             SuspendLayout();
             // 
             // buttonComandOff
@@ -41,72 +43,103 @@
             buttonComandOff.BackColor = Color.FromArgb(255, 255, 255);
             buttonComandOff.Font = new Font("Microsoft Sans Serif", 10F);
             buttonComandOff.ForeColor = Color.Black;
-            buttonComandOff.Location = new Point(20, 0);
+            buttonComandOff.Location = new Point(18, 0);
+            buttonComandOff.Margin = new Padding(3, 2, 3, 2);
             buttonComandOff.Name = "buttonComandOff";
-            buttonComandOff.Size = new Size(723, 54);
+            buttonComandOff.Size = new Size(633, 40);
             buttonComandOff.TabIndex = 0;
             buttonComandOff.Text = "buttonComandOff";
+            buttonComandOff.Click += buttonComandOff_Click;
             // 
             // buttonComandOn
             // 
             buttonComandOn.BackColor = Color.FromArgb(255, 255, 255);
             buttonComandOn.Font = new Font("Microsoft Sans Serif", 10F);
             buttonComandOn.ForeColor = Color.Black;
-            buttonComandOn.Location = new Point(20, 54);
+            buttonComandOn.Location = new Point(18, 40);
+            buttonComandOn.Margin = new Padding(3, 2, 3, 2);
             buttonComandOn.Name = "buttonComandOn";
-            buttonComandOn.Size = new Size(723, 54);
+            buttonComandOn.Size = new Size(633, 40);
             buttonComandOn.TabIndex = 1;
             buttonComandOn.Text = "buttonComandOn";
+            buttonComandOn.Click += buttonComandOn_Click;
             // 
             // buttonComandTurn
             // 
             buttonComandTurn.BackColor = Color.FromArgb(255, 255, 255);
             buttonComandTurn.Font = new Font("Microsoft Sans Serif", 10F);
             buttonComandTurn.ForeColor = Color.Black;
-            buttonComandTurn.Location = new Point(20, 108);
+            buttonComandTurn.Location = new Point(18, 81);
+            buttonComandTurn.Margin = new Padding(3, 2, 3, 2);
             buttonComandTurn.Name = "buttonComandTurn";
-            buttonComandTurn.Size = new Size(723, 54);
+            buttonComandTurn.Size = new Size(633, 40);
             buttonComandTurn.TabIndex = 2;
             buttonComandTurn.Text = "buttonComandTurn";
+            buttonComandTurn.Click += buttonComandTurn_Click;
             // 
             // buttonComandReset
             // 
             buttonComandReset.BackColor = Color.FromArgb(255, 255, 255);
             buttonComandReset.Font = new Font("Microsoft Sans Serif", 10F);
             buttonComandReset.ForeColor = Color.Black;
-            buttonComandReset.Location = new Point(20, 217);
+            buttonComandReset.Location = new Point(18, 163);
+            buttonComandReset.Margin = new Padding(3, 2, 3, 2);
             buttonComandReset.Name = "buttonComandReset";
-            buttonComandReset.Size = new Size(723, 54);
+            buttonComandReset.Size = new Size(633, 40);
             buttonComandReset.TabIndex = 3;
             buttonComandReset.Text = "buttonComandReset";
+            buttonComandReset.Click += buttonComandReset_Click;
             // 
             // buttonComand5
             // 
             buttonComand5.BackColor = Color.FromArgb(255, 255, 255);
             buttonComand5.Font = new Font("Microsoft Sans Serif", 10F);
             buttonComand5.ForeColor = Color.Black;
-            buttonComand5.Location = new Point(20, 271);
+            buttonComand5.Location = new Point(18, 203);
+            buttonComand5.Margin = new Padding(3, 2, 3, 2);
             buttonComand5.Name = "buttonComand5";
-            buttonComand5.Size = new Size(723, 54);
+            buttonComand5.Size = new Size(633, 40);
             buttonComand5.TabIndex = 4;
             buttonComand5.Text = "buttonComand5";
+            buttonComand5.Click += buttonComand5_Click;
             // 
             // turnTrackBar1
             // 
-            turnTrackBar1.Location = new Point(20, 162);
+            turnTrackBar1.Location = new Point(18, 122);
+            turnTrackBar1.Margin = new Padding(3, 2, 3, 2);
             turnTrackBar1.Maximum = 2000;
             turnTrackBar1.Minimum = 0;
             turnTrackBar1.Name = "turnTrackBar1";
-            turnTrackBar1.Size = new Size(723, 55);
+            turnTrackBar1.Size = new Size(633, 41);
             turnTrackBar1.TabIndex = 5;
             turnTrackBar1.Text = "turnTrackBar1";
             turnTrackBar1.Value = 0;
             // 
-            // PageComands
+            // label1
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            label1.AutoSize = true;
+            label1.Location = new Point(21, 258);
+            label1.Name = "label1";
+            label1.Size = new Size(38, 15);
+            label1.TabIndex = 6;
+            label1.Text = "label1";
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(21, 283);
+            label2.Name = "label2";
+            label2.Size = new Size(38, 15);
+            label2.TabIndex = 7;
+            label2.Text = "label2";
+            // 
+            // PageCommands
+            // 
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
+            Controls.Add(label2);
+            Controls.Add(label1);
             Controls.Add(turnTrackBar1);
             Controls.Add(buttonComand5);
             Controls.Add(buttonComandReset);
@@ -114,9 +147,10 @@
             Controls.Add(buttonComandOn);
             Controls.Add(buttonComandOff);
             Margin = new Padding(0);
-            Name = "PageComands";
-            Size = new Size(762, 563);
+            Name = "PageCommands";
+            Size = new Size(667, 422);
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -127,5 +161,7 @@
         private Controls.ButtonComand buttonComandReset;
         private Controls.ButtonComand buttonComand5;
         private Controls.TurnTrackBar turnTrackBar1;
+        private Label label1;
+        private Label label2;
     }
 }
