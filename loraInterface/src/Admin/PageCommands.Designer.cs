@@ -34,6 +34,8 @@
             buttonComandReset = new Controls.ButtonComand();
             buttonComand5 = new Controls.ButtonComand();
             turnTrackBar1 = new Controls.TurnTrackBar();
+            label1 = new Label();
+            label2 = new Label();
             SuspendLayout();
             // 
             // buttonComandOff
@@ -102,11 +104,31 @@
             turnTrackBar1.Text = "turnTrackBar1";
             turnTrackBar1.Value = 0;
             // 
-            // PageComands
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(33, 403);
+            label1.Name = "label1";
+            label1.Size = new Size(50, 20);
+            label1.TabIndex = 6;
+            label1.Text = "label1";
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(35, 445);
+            label2.Name = "label2";
+            label2.Size = new Size(50, 20);
+            label2.TabIndex = 7;
+            label2.Text = "label2";
+            // 
+            // PageCommands
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
+            Controls.Add(label2);
+            Controls.Add(label1);
             Controls.Add(turnTrackBar1);
             Controls.Add(buttonComand5);
             Controls.Add(buttonComandReset);
@@ -114,9 +136,10 @@
             Controls.Add(buttonComandOn);
             Controls.Add(buttonComandOff);
             Margin = new Padding(0);
-            Name = "PageComands";
+            Name = "PageCommands";
             Size = new Size(762, 563);
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -127,5 +150,7 @@
         private Controls.ButtonComand buttonComandReset;
         private Controls.ButtonComand buttonComand5;
         private Controls.TurnTrackBar turnTrackBar1;
+        private Label label1;
+        private Label label2;
     }
 }

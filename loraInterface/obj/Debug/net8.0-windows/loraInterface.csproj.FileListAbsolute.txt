@@ -45,3 +45,4 @@ D:\Tree\I\library\Git\loraInterface\loraInterface\obj\Debug\net8.0-windows\refin
 D:\Tree\I\library\Git\loraInterface\loraInterface\obj\Debug\net8.0-windows\loraInterface.pdb
 D:\Tree\I\library\Git\loraInterface\loraInterface\obj\Debug\net8.0-windows\loraInterface.genruntimeconfig.cache
 D:\Tree\I\library\Git\loraInterface\loraInterface\obj\Debug\net8.0-windows\ref\loraInterface.dll
+D:\Tree\I\library\Git\loraInterface\loraInterface\bin\Debug\net8.0-windows\Newtonsoft.Json.dll
