@@ -1,11 +1,11 @@
-﻿public class TurnData
+﻿public class Turn
 {
     public bool RotationStatus { get; set; }
     public int TurnValue { get; set; }
     public int ActualTurn { get; set; }
     public string Data { get; set; }
 
-    public TurnData(bool rotationStatus, int turnValue, int actualTurn, string data)
+    public Turn(bool rotationStatus, int turnValue, int actualTurn, string data)
     {
         RotationStatus = rotationStatus;
         TurnValue = turnValue;
@@ -13,7 +13,7 @@
         Data = data;
     }
 
-    public TurnData(Dictionary<string, dynamic> json)
+    public Turn(Dictionary<string, dynamic> json)
     {
         RotationStatus = json["rotationStatus"];
         TurnValue = (int)(long)json["turnValue"]; // Явное преобразование из long в int
@@ -32,35 +32,35 @@
         };
     }
 
-    public static List<TurnData> ReadTurnDataFromFile()
+    public static List<Turn> ReadTurnDataFromFile()
     {
         string currentDirectory = Directory.GetCurrentDirectory();
         string pathFile = Path.Combine("C:\\Tree\\programming\\GitHub\\loraInterface\\loraInterface\\src\\Class\\Turn\\turn_data.json");
         try
         {
             if (!File.Exists(pathFile))
-                return new List<TurnData>();
+                return new List<Turn>();
 
             string contents = File.ReadAllText(pathFile);
             if (string.IsNullOrEmpty(contents))
-                return new List<TurnData>();
+                return new List<Turn>();
 
             List<Dictionary<string, dynamic>> jsonDataList = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Dictionary<string, dynamic>>>(contents);
-            List<TurnData> turnDataList = new List<TurnData>();
+            List<Turn> turnDataList = new List<Turn>();
             foreach (var json in jsonDataList)
             {
-                turnDataList.Add(new TurnData(json));
+                turnDataList.Add(new Turn(json));
             }
             return turnDataList;
         }
         catch (Exception e)
         {
             Console.WriteLine($"Error reading file: {e}");
-            return new List<TurnData>();
+            return new List<Turn>();
         }
     }
 
-    public static void WriteTurnDataToFile(List<TurnData> turnDataList)
+    public static void WriteTurnDataToFile(List<Turn> turnDataList)
     {
         string currentDirectory = Directory.GetCurrentDirectory();
         string pathFile = Path.Combine("C:\\Tree\\programming\\GitHub\\loraInterface\\loraInterface\\src\\Class\\Turn\\turn_data.json");

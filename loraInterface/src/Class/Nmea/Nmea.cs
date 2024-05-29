@@ -49,7 +49,7 @@ public class Nmea
         }
         catch (Exception e)
         {
-            Console.WriteLine($"Error reading file: {e}");
+            Console.WriteLine($"Ошибка чтения файла: {e}");
             return new List<Nmea>();
         }
     }
@@ -71,7 +71,7 @@ public class Nmea
         }
         catch (Exception e)
         {
-            Console.WriteLine($"Error writing file: {e}");
+            Console.WriteLine($"Ошибка чтения файла: {e}");
         }
     }
 }
