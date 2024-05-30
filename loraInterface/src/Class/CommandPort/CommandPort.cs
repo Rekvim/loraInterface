@@ -10,37 +10,33 @@ public class CommandPort
     public string command = ""; // Переменная для хранения текущей команды
     public bool sendData = false; // Флаг для указания на необходимость отправки данных
 
-    // Конструктор для инициализации объекта CommandPort с параметрами для настройки последовательного порта
-    public CommandPort(string portName = "COM5", int baudRate = 115200, Parity parity = Parity.None, int dataBits = 8, StopBits stopBits = StopBits.One)
+    public CommandPort(string portName = "COM9", int baudRate = 115200, Parity parity = Parity.None, int dataBits = 8, StopBits stopBits = StopBits.One)
     {
         serialPort = new SerialPort(portName, baudRate, parity, dataBits, stopBits);
     }
 
-    // Метод для открытия порта
     public void OpenPort()
     {
         try
         {
             serialPort.Open();
-            Console.WriteLine($"Порт {serialPort.PortName} успешно открыт.");
+            Console.WriteLine($"Port {serialPort.PortName} opened successfully.");
         }
         catch (Exception e)
         {
-            Console.WriteLine($"Ошибка открытия порта {serialPort.PortName}: {e.Message}");
+            Console.WriteLine($"Error opening port {serialPort.PortName}: {e.Message}");
         }
     }
 
-    // Метод для закрытия порта
     public void ClosePort()
     {
         if (serialPort.IsOpen)
         {
             serialPort.Close();
-            Console.WriteLine($"Порт {serialPort.PortName} закрыт.");
+            Console.WriteLine($"Port {serialPort.PortName} closed.");
         }
     }
 
-    // Метод для чтения данных из порта
     public void ReadData()
     {
         try
@@ -51,34 +47,36 @@ public class CommandPort
                 {
                     if (sendData)
                     {
-                        Thread.Sleep(1000); // Задержка перед отправкой команды
+                        Thread.Sleep(1000);
                         // Отправляем команду, если флаг sendData равен true
                         SendCommand(command);
                         sendData = false; // Сбрасываем флаг после отправки команды
-                        command = ""; // Очищаем текущую команду
+
+                        command = "";
+                        sendData = false;
                     }
                 }
 
-                var data = serialPort.ReadLine().Trim(); // Чтение строки из порта
-                UpdateFromMessage(data); // Обновление данных из сообщения
-                LogDataToFile(data); // Логирование данных в файл
+                var data = serialPort.ReadLine().Trim();
+                Console.WriteLine($"{data}");
+                UpdateFromMessage(data);
+                LogDataToFile(data);
+
             }
             else
             {
-                Console.WriteLine("Порт не открыт.");
+                Console.WriteLine("Port is not open.");
             }
         }
         catch (TimeoutException)
         {
-            Console.WriteLine("Произошла ошибка времени ожидания при чтении из порта.");
+            Console.WriteLine("Timeout occurred while reading from the port.");
         }
         catch (Exception e)
         {
-            Console.WriteLine($"Ошибка чтения из порта {serialPort.PortName}: {e.Message}");
+            Console.WriteLine($"Error reading from port {serialPort.PortName}: {e.Message}");
         }
     }
-
-    // Метод для записи данных в файл
     private void LogDataToFile(string data)
     {
         try
@@ -90,22 +88,22 @@ public class CommandPort
         }
         catch (Exception e)
         {
-            Console.WriteLine($"Ошибка записи данных в файл: {e.Message}");
+            Console.WriteLine($"Error logging data to file: {e.Message}");
         }
     }
-
-    // Метод для отправки команды в порт
     public void SendCommand(string command)
     {
-        if (!serialPort.IsOpen)
-        {
-            Console.WriteLine("Порт не открыт.");
-            return;
-        }
         try
         {
-            serialPort.WriteLine(command);
-            Console.WriteLine($"Команда '{command}' отправлена.");
+            if (serialPort.IsOpen)
+            {
+                serialPort.WriteLine(command);
+                Console.WriteLine($"Команда '{command}' отправлена.");
+            }
+            else
+            {
+                Console.WriteLine("Порт не открыт.");
+            }
         }
         catch (Exception e)
         {
@@ -123,32 +121,30 @@ public class CommandPort
         }
     }
 
-    // Метод для обновления данных из сообщения
     public void UpdateFromMessage(string message)
     {
         try
         {
-            List<string> messages = new List<string>(message.Split('\n')); // Разделяем сообщение на части
+            List<string> messages = new List<string>(message.Split('\n'));
 
             foreach (string msg in messages)
             {
                 if (msg.Contains("//RATATION"))
                 {
-                    ProcessTurnData(msg); // Обработка данных Turn
+                    ProcessTurnData(msg);
                 }
                 else if (msg.StartsWith("$"))
                 {
-                    ProcessNmeaData(msg); // Обработка данных NMEA
+                    ProcessNmeaData(msg);
                 }
             }
         }
         catch (Exception e)
         {
-            Console.WriteLine($"Ошибка обновления данных из сообщения: {e}");
+            Console.WriteLine($"Error updating data from message: {e}");
         }
     }
 
-    // Метод для обработки данных поворота
     public void ProcessTurnData(string message)
     {
         try
@@ -168,56 +164,55 @@ public class CommandPort
 
             if (statusMatch.Success)
             {
-                rotationStatus = statusMatch.Groups[1].Value == "ON"; // Получаем статус вращения
+                rotationStatus = statusMatch.Groups[1].Value == "ON";
             }
 
             if (turnMatch.Success)
             {
-                turnValue = int.TryParse(turnMatch.Groups[1].Value, out int result) ? result : 0; // Получаем значение поворота
+                turnValue = int.TryParse(turnMatch.Groups[1].Value, out int result) ? result : 0;
             }
 
             if (actualTurnMatch.Success)
             {
-                actualTurn = int.TryParse(actualTurnMatch.Groups[1].Value, out int result) ? result : 0; // Получаем фактическое значение поворота
+                actualTurn = int.TryParse(actualTurnMatch.Groups[1].Value, out int result) ? result : 0;
             }
 
-            Turn newTurnData = new Turn(rotationStatus, turnValue, actualTurn, timestamp); // Создаем новый объект Turn
+            TurnData newTurnData = new TurnData(rotationStatus, turnValue, actualTurn, timestamp);
 
-            List<Turn> existingTurnDataList = Turn.ReadTurnDataFromFile(); // Читаем существующие данные поворотов из файла
-            existingTurnDataList.Add(newTurnData); // Добавляем новые данные поворота
+            List<TurnData> existingTurnDataList = TurnData.ReadTurnDataFromFile();
+            existingTurnDataList.Add(newTurnData);
 
-            Turn.WriteTurnDataToFile(existingTurnDataList); // Записываем обновленные данные поворотов в файл
+            TurnData.WriteTurnDataToFile(existingTurnDataList);
             Console.WriteLine(newTurnData);
         }
         catch (Exception e)
         {
-            Console.WriteLine($"Ошибка обработки данных поворота: {e}");
+            Console.WriteLine($"Error processing turn data: {e}");
         }
     }
 
-    // Метод для обработки данных NMEA
     public void ProcessNmeaData(string message)
     {
         try
         {
-            List<string> parts = new List<string>(message.Split(',')); // Разделяем сообщение на части
+            List<string> parts = new List<string>(message.Split(','));
             if (parts.Count == 0 || parts[0].Length < 6)
             {
                 return;
             }
 
-            string typeCode = parts[0].Substring(1, 5); // Получаем тип сообщения
-            Nmea newNmeaData = new Nmea(typeCode, parts); // Создаем новый объект Nmea
+            string typeCode = parts[0].Substring(1, 5);
+            NmeaData newNmeaData = new NmeaData(typeCode, parts);
 
-            List<Nmea> existingNmeaDataList = Nmea.ReadNmeaDataFromFile(); // Читаем существующие данные NMEA из файла
-            existingNmeaDataList.Add(newNmeaData); // Добавляем новые данные NMEA
+            List<NmeaData> existingNmeaDataList = NmeaData.ReadNmeaDataFromFile();
+            existingNmeaDataList.Add(newNmeaData);
 
-            Nmea.WriteNmeaDataToFile(existingNmeaDataList); // Записываем обновленные данные NMEA в файл
+            NmeaData.WriteNmeaDataToFile(existingNmeaDataList);
             Console.WriteLine(newNmeaData);
         }
         catch (Exception e)
         {
-            Console.WriteLine($"Ошибка обработки данных NMEA: {e}");
+            Console.WriteLine($"Error processing NMEA data: {e}");
         }
     }
 }

@@ -1,17 +1,17 @@
 ﻿using Newtonsoft.Json.Linq;
 
-public class Nmea
+public class NmeaData
 {
     public string Type { get; set; }
     public List<string> Data { get; set; }
 
-    public Nmea(string type, List<string> data)
+    public NmeaData(string type, List<string> data)
     {
         Type = type;
         Data = data;
     }
 
-    public Nmea(Dictionary<string, dynamic> json)
+    public NmeaData(Dictionary<string, dynamic> json)
     {
         Type = json["type"];
         Data = ((JArray)json["data"]).ToObject<List<string>>();
@@ -26,38 +26,38 @@ public class Nmea
         };
     }
 
-    public static List<Nmea> ReadNmeaDataFromFile()
+    public static List<NmeaData> ReadNmeaDataFromFile()
     {
         string currentDirectory = Directory.GetCurrentDirectory();
-        string pathFile = Path.Combine("C:\\Tree\\programming\\GitHub\\loraInterface\\loraInterface\\src\\Class\\Nmea\\nmea_data.json");
+        string pathFile = Path.Combine("D:\\Tree\\I\\library\\Git\\loraInterface\\loraInterface\\src\\Class\\NmeaData\\nmea_data.json");
         try
         {
             if (!File.Exists(pathFile))
-                return new List<Nmea>();
+                return new List<NmeaData>();
 
             string contents = File.ReadAllText(pathFile);
             if (string.IsNullOrEmpty(contents))
-                return new List<Nmea>();
+                return new List<NmeaData>();
 
             List<Dictionary<string, dynamic>> jsonDataList = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Dictionary<string, dynamic>>>(contents);
-            List<Nmea> nmeaDataList = new List<Nmea>();
+            List<NmeaData> nmeaDataList = new List<NmeaData>();
             foreach (var json in jsonDataList)
             {
-                nmeaDataList.Add(new Nmea(json));
+                nmeaDataList.Add(new NmeaData(json));
             }
             return nmeaDataList;
         }
         catch (Exception e)
         {
-            Console.WriteLine($"Ошибка чтения файла: {e}");
-            return new List<Nmea>();
+            Console.WriteLine($"Error reading file: {e}");
+            return new List<NmeaData>();
         }
     }
 
-    public static void WriteNmeaDataToFile(List<Nmea> nmeaDataList)
+    public static void WriteNmeaDataToFile(List<NmeaData> nmeaDataList)
     {
         string currentDirectory = Directory.GetCurrentDirectory();
-        string pathFile = Path.Combine("C:\\Tree\\programming\\GitHub\\loraInterface\\loraInterface\\src\\Class\\Nmea\\nmea_data.json");
+        string pathFile = Path.Combine("D:\\Tree\\I\\library\\Git\\loraInterface\\loraInterface\\src\\Class\\NmeaData\\nmea_data.json");
         try
         {
             List<Dictionary<string, dynamic>> jsonDataList = new List<Dictionary<string, dynamic>>();
@@ -71,7 +71,7 @@ public class Nmea
         }
         catch (Exception e)
         {
-            Console.WriteLine($"Ошибка чтения файла: {e}");
+            Console.WriteLine($"Error writing file: {e}");
         }
     }
 }

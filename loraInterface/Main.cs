@@ -1,5 +1,4 @@
 using System;
-using System.Reflection.Emit;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -18,9 +17,11 @@ namespace loraInterface
 
         private void Main_Load(object sender, EventArgs e)
         {
+            // Запускаем обработку COM порта при загрузке формы
             commandPort = new CommandPort();
             commandPort.OpenPort();
             Task.Run(() => ReadDataFromPort());
+            label1.Text = commandPort.command;
         }
 
         private void ReadDataFromPort()
@@ -28,6 +29,7 @@ namespace loraInterface
             while (true)
             {
                 commandPort.ReadData();
+                // Делаем задержку в 1 секунду
                 Thread.Sleep(1000);
             }
         }
