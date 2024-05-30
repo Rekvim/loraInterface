@@ -1,4 +1,6 @@
-﻿public class TurnData
+﻿using System.Text.RegularExpressions;
+
+public class TurnData
 {
     public bool RotationStatus { get; set; }
     public int TurnValue { get; set; }
@@ -31,6 +33,54 @@
             { "data", Data }
         };
     }
+
+    public void ProcessTurnData(string message)
+    {
+        try
+        {
+            Regex statusRegex = new Regex(@"RATATION - (ON|OFF)");
+            Regex turnRegex = new Regex(@"SET TURN: (\d+)");
+            Regex actualTurnRegex = new Regex(@"TURN ACTUAL: (\d+)");
+
+            bool rotationStatus = false;
+            int turnValue = 0;
+            int actualTurn = 0;
+            string timestamp = DateTime.Now.ToString();
+
+            Match statusMatch = statusRegex.Match(message);
+            Match turnMatch = turnRegex.Match(message);
+            Match actualTurnMatch = actualTurnRegex.Match(message);
+
+            if (statusMatch.Success)
+            {
+                rotationStatus = statusMatch.Groups[1].Value == "ON";
+            }
+
+            if (turnMatch.Success)
+            {
+                turnValue = int.TryParse(turnMatch.Groups[1].Value, out int result) ? result : 0;
+            }
+
+            if (actualTurnMatch.Success)
+            {
+                actualTurn = int.TryParse(actualTurnMatch.Groups[1].Value, out int result) ? result : 0;
+            }
+
+            // Передаем аргументы в конструктор TurnData
+            TurnData newTurnData = new TurnData(rotationStatus, turnValue, actualTurn, timestamp);
+
+            List<TurnData> existingTurnDataList = TurnData.ReadTurnDataFromFile();
+            existingTurnDataList.Add(newTurnData);
+
+            TurnData.WriteTurnDataToFile(existingTurnDataList);
+            MessageBox.Show(newTurnData.ToString(), "Новые данные о повороте", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+        catch (Exception e)
+        {
+            MessageBox.Show($"Ошибка при обработке данных о повороте: {e}", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+    }
+
 
     public static List<TurnData> ReadTurnDataFromFile()
     {

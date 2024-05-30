@@ -10,5 +10,11 @@
     "turnValue": 230,
     "actualTurn": 139,
     "data": "28.05.2024 18:49:43"
+  },
+  {
+    "rotationStatus": true,
+    "turnValue": 660,
+    "actualTurn": 360,
+    "data": "30.05.2024 12:44:16"
   }
 ]

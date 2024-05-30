@@ -1,5 +1,10 @@
-﻿using System.IO.Ports;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.IO.Ports;
 using System.Text.RegularExpressions;
+using System.Threading;
+using System.Windows.Forms;
 
 public class CommandPort
 {
@@ -20,11 +25,11 @@ public class CommandPort
         try
         {
             serialPort.Open();
-            Console.WriteLine($"Port {serialPort.PortName} opened successfully.");
+            MessageBox.Show($"Порт {serialPort.PortName} успешно открыт.", "Информация", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
         catch (Exception e)
         {
-            Console.WriteLine($"Error opening port {serialPort.PortName}: {e.Message}");
+            MessageBox.Show($"Ошибка при открытии порта {serialPort.PortName}: {e.Message}", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
     }
 
@@ -33,7 +38,7 @@ public class CommandPort
         if (serialPort.IsOpen)
         {
             serialPort.Close();
-            Console.WriteLine($"Port {serialPort.PortName} closed.");
+            MessageBox.Show($"Порт {serialPort.PortName} закрыт.", "Информация", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
 
@@ -58,25 +63,25 @@ public class CommandPort
                 }
 
                 var data = serialPort.ReadLine().Trim();
-                Console.WriteLine($"{data}");
+                MessageBox.Show($"{data}", "Данные", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 UpdateFromMessage(data);
                 LogDataToFile(data);
-
             }
             else
             {
-                Console.WriteLine("Port is not open.");
+                MessageBox.Show("Порт не открыт.", "Предупреждение", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
         catch (TimeoutException)
         {
-            Console.WriteLine("Timeout occurred while reading from the port.");
+            MessageBox.Show("Истекло время ожидания при чтении с порта.", "Предупреждение", MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }
         catch (Exception e)
         {
-            Console.WriteLine($"Error reading from port {serialPort.PortName}: {e.Message}");
+            MessageBox.Show($"Ошибка при чтении с порта {serialPort.PortName}: {e.Message}", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
     }
+
     private void LogDataToFile(string data)
     {
         try
@@ -88,9 +93,10 @@ public class CommandPort
         }
         catch (Exception e)
         {
-            Console.WriteLine($"Error logging data to file: {e.Message}");
+            MessageBox.Show($"Ошибка при записи данных в файл: {e.Message}", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
     }
+
     public void SendCommand(string command)
     {
         try
@@ -98,16 +104,16 @@ public class CommandPort
             if (serialPort.IsOpen)
             {
                 serialPort.WriteLine(command);
-                Console.WriteLine($"Команда '{command}' отправлена.");
+                MessageBox.Show($"Команда '{command}' отправлена.", "Информация", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
             {
-                Console.WriteLine("Порт не открыт.");
+                MessageBox.Show("Порт не открыт.", "Предупреждение", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
         catch (Exception e)
         {
-            Console.WriteLine($"Ошибка при отправке команды '{command}': {e.Message}");
+            MessageBox.Show($"Ошибка при отправке команды '{command}': {e.Message}", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
     }
 
@@ -131,88 +137,22 @@ public class CommandPort
             {
                 if (msg.Contains("//RATATION"))
                 {
-                    ProcessTurnData(msg);
+                    // Создаем экземпляр класса TurnData, передавая необходимые аргументы
+                    TurnData turnData = new TurnData(false, 0, 0, "");
+                    turnData.ProcessTurnData(msg); // Вызываем метод через экземпляр класса
                 }
                 else if (msg.StartsWith("$"))
                 {
-                    ProcessNmeaData(msg);
+                    // Создаем экземпляр класса NmeaData, передавая необходимые аргументы
+                    NmeaData nmeaData = new NmeaData("", new List<string>());
+                    nmeaData.ProcessNmeaData(msg); // Вызываем метод через экземпляр класса
                 }
             }
         }
         catch (Exception e)
         {
-            Console.WriteLine($"Error updating data from message: {e}");
+            MessageBox.Show($"Ошибка при обновлении данных из сообщения: {e}", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
     }
 
-    public void ProcessTurnData(string message)
-    {
-        try
-        {
-            Regex statusRegex = new Regex(@"RATATION - (ON|OFF)");
-            Regex turnRegex = new Regex(@"SET TURN: (\d+)");
-            Regex actualTurnRegex = new Regex(@"TURN ACTUAL: (\d+)");
-
-            bool rotationStatus = false;
-            int turnValue = 0;
-            int actualTurn = 0;
-            string timestamp = DateTime.Now.ToString();
-
-            Match statusMatch = statusRegex.Match(message);
-            Match turnMatch = turnRegex.Match(message);
-            Match actualTurnMatch = actualTurnRegex.Match(message);
-
-            if (statusMatch.Success)
-            {
-                rotationStatus = statusMatch.Groups[1].Value == "ON";
-            }
-
-            if (turnMatch.Success)
-            {
-                turnValue = int.TryParse(turnMatch.Groups[1].Value, out int result) ? result : 0;
-            }
-
-            if (actualTurnMatch.Success)
-            {
-                actualTurn = int.TryParse(actualTurnMatch.Groups[1].Value, out int result) ? result : 0;
-            }
-
-            TurnData newTurnData = new TurnData(rotationStatus, turnValue, actualTurn, timestamp);
-
-            List<TurnData> existingTurnDataList = TurnData.ReadTurnDataFromFile();
-            existingTurnDataList.Add(newTurnData);
-
-            TurnData.WriteTurnDataToFile(existingTurnDataList);
-            Console.WriteLine(newTurnData);
-        }
-        catch (Exception e)
-        {
-            Console.WriteLine($"Error processing turn data: {e}");
-        }
-    }
-
-    public void ProcessNmeaData(string message)
-    {
-        try
-        {
-            List<string> parts = new List<string>(message.Split(','));
-            if (parts.Count == 0 || parts[0].Length < 6)
-            {
-                return;
-            }
-
-            string typeCode = parts[0].Substring(1, 5);
-            NmeaData newNmeaData = new NmeaData(typeCode, parts);
-
-            List<NmeaData> existingNmeaDataList = NmeaData.ReadNmeaDataFromFile();
-            existingNmeaDataList.Add(newNmeaData);
-
-            NmeaData.WriteNmeaDataToFile(existingNmeaDataList);
-            Console.WriteLine(newNmeaData);
-        }
-        catch (Exception e)
-        {
-            Console.WriteLine($"Error processing NMEA data: {e}");
-        }
-    }
 }

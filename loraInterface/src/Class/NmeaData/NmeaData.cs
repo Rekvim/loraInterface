@@ -25,7 +25,29 @@ public class NmeaData
             { "data", Data }
         };
     }
+    public void ProcessNmeaData(string message)
+    {
+        try
+        {
+            List<string> parts = new List<string>(message.Split(','));
+            if (parts.Count == 0 || parts[0].Length < 6)
+            {
+                return;
+            }
 
+            string typeCode = parts[0].Substring(1, 5);
+            NmeaData newNmeaData = new NmeaData(typeCode, parts);
+
+            List<NmeaData> existingNmeaDataList = NmeaData.ReadNmeaDataFromFile();
+            existingNmeaDataList.Add(newNmeaData);
+            NmeaData.WriteNmeaDataToFile(existingNmeaDataList);
+            MessageBox.Show(newNmeaData.ToString(), "Новые данные NMEA", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+        catch (Exception e)
+        {
+            MessageBox.Show($"Ошибка при обработке данных NMEA: {e}", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+    }
     public static List<NmeaData> ReadNmeaDataFromFile()
     {
         string currentDirectory = Directory.GetCurrentDirectory();

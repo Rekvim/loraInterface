@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("loraInterface")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5c6cabe1ad108fb5821e725c4e155e786cf3daf1")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f7110297faf1123c43e75b59e8a0f794217243d5")]
 [assembly: System.Reflection.AssemblyProductAttribute("loraInterface")]
 [assembly: System.Reflection.AssemblyTitleAttribute("loraInterface")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
