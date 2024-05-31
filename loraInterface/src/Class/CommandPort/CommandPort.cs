@@ -1,4 +1,5 @@
-﻿using System;
+﻿using loraInterface.src.Controls;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.IO.Ports;
@@ -46,45 +47,56 @@ public class CommandPort
     }
 
     // Метод для чтения данных с последовательного порта
-    public void ReadData()
+public void ReadData()
+{
+    try
     {
-        try
+        if (serialPort.IsOpen)
         {
-            if (serialPort.IsOpen)
+            lock (lockObject)
             {
-                lock (lockObject)
+                if (sendData)
                 {
-                    if (sendData)
-                    {
-                        Thread.Sleep(1000);
-                        // Отправляем команду, если флаг sendData равен true
-                        SendCommand(command);
-                        sendData = false; // Сбрасываем флаг после отправки команды
-
-                        command = "";
-                        sendData = false;
-                    }
+                    Thread.Sleep(1000);
+                    // Отправляем команду, если флаг sendData равен true
+                    SendCommand(command);
+                    sendData = false; // Сбрасываем флаг после отправки команды
                 }
+            }
 
-                var data = serialPort.ReadLine().Trim();
-                //MessageBox.Show($"{data}", "Данные", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                UpdateFromMessage(data);
-                LogDataToFile(data);
-            }
-            else
+            var data = serialPort.ReadLine().Trim();
+
+            // Обработка принятых сообщений
+            if (data == "NOT SEND")
             {
-                MessageBox.Show("Порт не открыт.", "Предупреждение", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                // Повторная отправка последней команды
+                SendCommand(command);
             }
+            else if (Regex.IsMatch(data, @"^Receive .+ rssi dbm : -\d+ signal rssi dbm : -\d+ snr db : \d+$"))
+            {
+                // Сообщение о принятии команды
+                MessageBox.Show("Команда принята.", "Информация", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+
+            // Логирование принятых данных
+            UpdateFromMessage(data);
+            LogDataToFile(data);
         }
-        catch (TimeoutException)
+        else
         {
-            MessageBox.Show("Истекло время ожидания при чтении с порта.", "Предупреждение", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-        }
-        catch (Exception e)
-        {
-            MessageBox.Show($"Ошибка при чтении с порта {serialPort.PortName}: {e.Message}", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            MessageBox.Show("Порт не открыт.", "Предупреждение", MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }
     }
+    catch (TimeoutException)
+    {
+        MessageBox.Show("Истекло время ожидания при чтении с порта.", "Предупреждение", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+    }
+    catch (Exception e)
+    {
+        MessageBox.Show($"Ошибка при чтении с порта {serialPort.PortName}: {e.Message}", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+    }
+}
+
 
     // Метод для записи данных в файл
     private void LogDataToFile(string data)

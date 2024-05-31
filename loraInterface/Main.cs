@@ -1,14 +1,17 @@
 using System;
+using System.IO.Ports;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using loraInterface.src.Admin;
+using loraInterface.src.Controls;
 using loraInterface.src.Pages;
 
 namespace loraInterface
 {
     public partial class Main : Form
     {
+
         private CommandPort commandPort;
 
         public Main()
@@ -18,7 +21,6 @@ namespace loraInterface
         private void Main_Load(object sender, EventArgs e)
         {
             // Запускаем обработку COM порта при загрузке формы
-            commandPort = new CommandPort();
             commandPort.OpenPort();
             Task.Run(() => ReadDataFromPort());
         }
@@ -43,6 +45,7 @@ namespace loraInterface
 
         private void buttonNavTurnInfo_Click(object sender, EventArgs e)
         {
+            // Переключаемся на страницу с информацией о поворотах
             PageTurnInfo turn_info = new PageTurnInfo();
             AddUserControl(turn_info);
         }
