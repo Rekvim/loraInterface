@@ -41,7 +41,7 @@ public class NmeaData
             List<NmeaData> existingNmeaDataList = NmeaData.ReadNmeaDataFromFile();
             existingNmeaDataList.Add(newNmeaData);
             NmeaData.WriteNmeaDataToFile(existingNmeaDataList);
-            MessageBox.Show(newNmeaData.ToString(), "Новые данные NMEA", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            //MessageBox.Show(newNmeaData.ToString(), "Новые данные NMEA", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
         catch (Exception e)
         {
@@ -51,7 +51,8 @@ public class NmeaData
     public static List<NmeaData> ReadNmeaDataFromFile()
     {
         string currentDirectory = Directory.GetCurrentDirectory();
-        string pathFile = Path.Combine("D:\\Tree\\I\\library\\Git\\loraInterface\\loraInterface\\src\\Class\\NmeaData\\nmea_data.json");
+        //string pathFile = Path.Combine("D:\\Tree\\I\\library\\Git\\loraInterface\\loraInterface\\src\\Class\\NmeaData\\nmea_data.json");
+        string pathFile = Path.Combine("C:\\Tree\\programming\\GitHub\\loraInterface\\loraInterface\\src\\Class\\NmeaData\\nmea_data.json");
         try
         {
             if (!File.Exists(pathFile))
@@ -79,7 +80,9 @@ public class NmeaData
     public static void WriteNmeaDataToFile(List<NmeaData> nmeaDataList)
     {
         string currentDirectory = Directory.GetCurrentDirectory();
-        string pathFile = Path.Combine("D:\\Tree\\I\\library\\Git\\loraInterface\\loraInterface\\src\\Class\\NmeaData\\nmea_data.json");
+        //string pathFile = Path.Combine("D:\\Tree\\I\\library\\Git\\loraInterface\\loraInterface\\src\\Class\\NmeaData\\nmea_data.json");
+        string pathFile = Path.Combine("C:\\Tree\\programming\\GitHub\\loraInterface\\loraInterface\\src\\Class\\NmeaData\\nmea_data.json");
+
         try
         {
             List<Dictionary<string, dynamic>> jsonDataList = new List<Dictionary<string, dynamic>>();

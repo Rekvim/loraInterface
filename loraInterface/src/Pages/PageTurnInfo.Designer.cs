@@ -28,59 +28,64 @@
         /// </summary>
         private void InitializeComponent()
         {
-            cellParamsInfo1 = new Controls.CellParamsInfo();
-            cellParamsInfo3 = new Controls.CellParamsInfo();
-            cellParamsInfo2 = new Controls.CellParamsInfo();
+            cellParamsInfoState = new Controls.CellParamsInfo();
+            cellParamsInfoActualTurn = new Controls.CellParamsInfo();
+            cellParamsInfoTurn = new Controls.CellParamsInfo();
             SuspendLayout();
             // 
-            // cellParamsInfo1
+            // cellParamsInfoState
             // 
-            cellParamsInfo1.Anchor = AnchorStyles.Top;
-            cellParamsInfo1.labelParamText = "Состояние:";
-            cellParamsInfo1.labelValueText = "value";
-            cellParamsInfo1.Location = new Point(20, 0);
-            cellParamsInfo1.Name = "cellParamsInfo1";
-            cellParamsInfo1.Size = new Size(723, 54);
-            cellParamsInfo1.TabIndex = 1;
-            cellParamsInfo1.Text = "cellParamsInfoState";
+            cellParamsInfoState.Anchor = AnchorStyles.Top;
+            cellParamsInfoState.labelParamText = "Состояние:";
+            cellParamsInfoState.labelValueText = "value";
+            cellParamsInfoState.Location = new Point(18, 0);
+            cellParamsInfoState.Margin = new Padding(3, 2, 3, 2);
+            cellParamsInfoState.Name = "cellParamsInfoState";
+            cellParamsInfoState.Size = new Size(633, 40);
+            cellParamsInfoState.TabIndex = 1;
+            cellParamsInfoState.Text = "cellParamsInfoState";
             // 
-            // cellParamsInfo3
+            // cellParamsInfoActualTurn
             // 
-            cellParamsInfo3.labelParamText = "Актуальные обороты:";
-            cellParamsInfo3.labelValueText = "value";
-            cellParamsInfo3.Location = new Point(20, 108);
-            cellParamsInfo3.Name = "cellParamsInfo3";
-            cellParamsInfo3.Size = new Size(723, 54);
-            cellParamsInfo3.TabIndex = 3;
-            cellParamsInfo3.Text = "cellParamsInfoActualTurn";
+            cellParamsInfoActualTurn.labelParamText = "Актуальные обороты:";
+            cellParamsInfoActualTurn.labelValueText = "value";
+            cellParamsInfoActualTurn.Location = new Point(18, 81);
+            cellParamsInfoActualTurn.Margin = new Padding(3, 2, 3, 2);
+            cellParamsInfoActualTurn.Name = "cellParamsInfoActualTurn";
+            cellParamsInfoActualTurn.Size = new Size(633, 40);
+            cellParamsInfoActualTurn.TabIndex = 3;
+            cellParamsInfoActualTurn.Text = "cellParamsInfoActualTurn";
             // 
-            // cellParamsInfo2
+            // cellParamsInfoTurn
             // 
-            cellParamsInfo2.Anchor = AnchorStyles.Top;
-            cellParamsInfo2.labelParamText = "Заданные обороты:";
-            cellParamsInfo2.labelValueText = "value";
-            cellParamsInfo2.Location = new Point(20, 54);
-            cellParamsInfo2.Name = "cellParamsInfo2";
-            cellParamsInfo2.Size = new Size(723, 54);
-            cellParamsInfo2.TabIndex = 2;
-            cellParamsInfo2.Text = "cellParamsInfoTurn";
+            cellParamsInfoTurn.Anchor = AnchorStyles.Top;
+            cellParamsInfoTurn.labelParamText = "Заданные обороты:";
+            cellParamsInfoTurn.labelValueText = "value";
+            cellParamsInfoTurn.Location = new Point(18, 40);
+            cellParamsInfoTurn.Margin = new Padding(3, 2, 3, 2);
+            cellParamsInfoTurn.Name = "cellParamsInfoTurn";
+            cellParamsInfoTurn.Size = new Size(633, 40);
+            cellParamsInfoTurn.TabIndex = 2;
+            cellParamsInfoTurn.Text = "cellParamsInfoTurn";
             // 
-            // TurnInfo
+            // PageTurnInfo
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            Controls.Add(cellParamsInfo3);
-            Controls.Add(cellParamsInfo2);
-            Controls.Add(cellParamsInfo1);
-            Name = "TurnInfo";
-            Size = new Size(762, 563);
+            Controls.Add(cellParamsInfoActualTurn);
+            Controls.Add(cellParamsInfoTurn);
+            Controls.Add(cellParamsInfoState);
+            Margin = new Padding(3, 2, 3, 2);
+            Name = "PageTurnInfo";
+            Size = new Size(667, 422);
+            Load += PageTurnInfo_Load;
             ResumeLayout(false);
         }
 
         #endregion
-        private Controls.CellParamsInfo cellParamsInfo1;
-        private Controls.CellParamsInfo cellParamsInfo3;
-        private Controls.CellParamsInfo cellParamsInfo2;
+        private Controls.CellParamsInfo cellParamsInfoState;
+        private Controls.CellParamsInfo cellParamsInfoActualTurn;
+        private Controls.CellParamsInfo cellParamsInfoTurn;
     }
 }

@@ -99,7 +99,7 @@ namespace loraInterface.src.Controls
                 g.FillRectangle(brush, clientRectangle);
             }
 
-            // Track
+            // Дорожка
             int trackWidth = clientRectangle.Width - 20; // учитываем отступы слева и справа
             int trackHeight = 5;
             int trackTop = (clientRectangle.Height - trackHeight) / 2;
@@ -111,7 +111,7 @@ namespace loraInterface.src.Controls
                 g.FillRectangle(brush, trackRectangle);
             }
 
-            // Thumb
+            // Бегунок
             float thumbPosition = trackLeft + (float)(_value - _minimum) / (_maximum - _minimum) * trackWidth;
             int thumbSize = 15;
             Rectangle thumbRectangle = new Rectangle((int)thumbPosition - thumbSize / 2, trackTop - thumbSize / 2, thumbSize, thumbSize);
@@ -120,7 +120,7 @@ namespace loraInterface.src.Controls
                 g.FillEllipse(brush, thumbRectangle);
             }
 
-            // Drawing value above the thumb
+            // Отображаем значение бегунка
             string valueText = _value.ToString();
             SizeF textSize = g.MeasureString(valueText, Font);
             PointF textLocation = new PointF(thumbRectangle.X + (thumbRectangle.Width - textSize.Width) / 2, trackTop - textSize.Height - 5);

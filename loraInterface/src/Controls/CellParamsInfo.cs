@@ -29,7 +29,7 @@ namespace loraInterface.src.Controls
 
         public CellParamsInfo()
         {
-            // Initialize labels
+            // Инициализация label-ов
             labelParam = new Label
             {
                 AutoSize = true,
@@ -47,11 +47,11 @@ namespace loraInterface.src.Controls
                 Location = new Point(0, 0)
             };
 
-            // Add labels to the control
+            // Добавление label-а к элементу управления
             Controls.Add(labelParam);
             Controls.Add(labelValue);
 
-            // Set control styles
+            // Установка стилей управления
             SetStyle(ControlStyles.ResizeRedraw | ControlStyles.OptimizedDoubleBuffer, true);
             Size = new Size(500, 54);
             Resize += CellParamsInfo_Resize;
@@ -76,12 +76,12 @@ namespace loraInterface.src.Controls
 
             if (totalWidth > Width)
             {
-                // Adjust the widths if they exceed the available space
+                // Отрегулируйте ширину, если она превышает доступное пространство
                 labelParam.Width = (Width - spacing) / 2;
                 labelValue.Width = (Width - spacing) / 2;
             }
 
-            // Center the labels vertically
+            // Центрируйте надписи по вертикали
             labelParam.Location = new Point(offset, (Height - labelParam.Height) / 2);
             labelValue.Location = new Point(labelParam.Right + spacing, (Height - labelValue.Height) / 2);
         }

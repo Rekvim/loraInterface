@@ -3,6 +3,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using loraInterface.src.Admin;
+using loraInterface.src.Pages;
 
 namespace loraInterface
 {
@@ -14,14 +15,12 @@ namespace loraInterface
         {
             InitializeComponent();
         }
-
         private void Main_Load(object sender, EventArgs e)
         {
             // «апускаем обработку COM порта при загрузке формы
             commandPort = new CommandPort();
             commandPort.OpenPort();
             Task.Run(() => ReadDataFromPort());
-            label1.Text = commandPort.command;
         }
 
         private void ReadDataFromPort()
@@ -52,6 +51,12 @@ namespace loraInterface
         {
             PageCommands page_commands = new PageCommands(commandPort);
             AddUserControl(page_commands);
+        }
+
+        private void buttonNavTurnChart_Click(object sender, EventArgs e)
+        {
+            TurnChart turn_chart = new TurnChart();
+            AddUserControl(turn_chart);
         }
     }
 }

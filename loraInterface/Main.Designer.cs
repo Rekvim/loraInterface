@@ -31,10 +31,9 @@
             panelMain = new Panel();
             panelContent = new Panel();
             panelBar = new Panel();
-            buttonNav3 = new src.Controls.ButtonNav();
+            buttonNavTurnChart = new src.Controls.ButtonNav();
             buttonNavComands = new src.Controls.ButtonNav();
             buttonNavTurnInfo = new src.Controls.ButtonNav();
-            label1 = new Label();
             panelMain.SuspendLayout();
             panelBar.SuspendLayout();
             SuspendLayout();
@@ -61,8 +60,7 @@
             // 
             // panelBar
             // 
-            panelBar.Controls.Add(label1);
-            panelBar.Controls.Add(buttonNav3);
+            panelBar.Controls.Add(buttonNavTurnChart);
             panelBar.Controls.Add(buttonNavComands);
             panelBar.Controls.Add(buttonNavTurnInfo);
             panelBar.Dock = DockStyle.Left;
@@ -72,34 +70,38 @@
             panelBar.Size = new Size(192, 422);
             panelBar.TabIndex = 0;
             // 
-            // buttonNav3
+            // buttonNavTurnChart
             // 
-            buttonNav3.BackColor = Color.FromArgb(255, 255, 255);
-            buttonNav3.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            buttonNav3.ForeColor = Color.Black;
-            buttonNav3.Location = new Point(0, 81);
-            buttonNav3.Margin = new Padding(0);
-            buttonNav3.Name = "buttonNav3";
-            buttonNav3.Size = new Size(192, 40);
-            buttonNav3.TabIndex = 2;
-            buttonNav3.Text = "buttonNav3";
+            buttonNavTurnChart.BackColor = Color.FromArgb(255, 255, 255);
+            buttonNavTurnChart.Dock = DockStyle.Top;
+            buttonNavTurnChart.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            buttonNavTurnChart.ForeColor = Color.Black;
+            buttonNavTurnChart.Location = new Point(0, 80);
+            buttonNavTurnChart.Margin = new Padding(0);
+            buttonNavTurnChart.Name = "buttonNavTurnChart";
+            buttonNavTurnChart.Size = new Size(192, 40);
+            buttonNavTurnChart.TabIndex = 1;
+            buttonNavTurnChart.Text = "График Актульных оборотов";
+            buttonNavTurnChart.Click += buttonNavTurnChart_Click;
             // 
             // buttonNavComands
             // 
             buttonNavComands.BackColor = Color.FromArgb(255, 255, 255);
+            buttonNavComands.Dock = DockStyle.Top;
             buttonNavComands.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             buttonNavComands.ForeColor = Color.Black;
             buttonNavComands.Location = new Point(0, 40);
             buttonNavComands.Margin = new Padding(0);
             buttonNavComands.Name = "buttonNavComands";
             buttonNavComands.Size = new Size(192, 40);
-            buttonNavComands.TabIndex = 1;
-            buttonNavComands.Text = "buttonNav2";
+            buttonNavComands.TabIndex = 2;
+            buttonNavComands.Text = "Команды GPS";
             buttonNavComands.Click += buttonNavComands_Click;
             // 
             // buttonNavTurnInfo
             // 
             buttonNavTurnInfo.BackColor = Color.FromArgb(255, 255, 255);
+            buttonNavTurnInfo.Dock = DockStyle.Top;
             buttonNavTurnInfo.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             buttonNavTurnInfo.ForeColor = Color.Black;
             buttonNavTurnInfo.Location = new Point(0, 0);
@@ -107,17 +109,8 @@
             buttonNavTurnInfo.Name = "buttonNavTurnInfo";
             buttonNavTurnInfo.Size = new Size(192, 40);
             buttonNavTurnInfo.TabIndex = 0;
-            buttonNavTurnInfo.Text = "buttonNav1";
+            buttonNavTurnInfo.Text = "Информация о турбине";
             buttonNavTurnInfo.Click += buttonNavTurnInfo_Click;
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Location = new Point(6, 137);
-            label1.Name = "label1";
-            label1.Size = new Size(38, 15);
-            label1.TabIndex = 3;
-            label1.Text = "label1";
             // 
             // Main
             // 
@@ -132,7 +125,6 @@
             Load += Main_Load;
             panelMain.ResumeLayout(false);
             panelBar.ResumeLayout(false);
-            panelBar.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -142,8 +134,7 @@
         private Panel panelContent;
         private Panel panelBar;
         private src.Controls.ButtonNav buttonNavTurnInfo;
-        private src.Controls.ButtonNav buttonNav3;
+        private src.Controls.ButtonNav buttonNavTurnChart;
         private src.Controls.ButtonNav buttonNavComands;
-        private Label label1;
     }
 }

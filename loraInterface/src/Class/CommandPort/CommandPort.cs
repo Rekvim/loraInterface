@@ -8,24 +8,26 @@ using System.Windows.Forms;
 
 public class CommandPort
 {
-    private SerialPort serialPort;
-    private StreamWriter writer;
+    private SerialPort serialPort; // Последовательный порт для взаимодействия
+    private StreamWriter writer; // Поток для записи в файл
     private object lockObject = new object(); // Объект для синхронизации доступа
 
     public string command = ""; // Переменная для хранения текущей команды
     public bool sendData = false; // Флаг для указания на необходимость отправки данных
 
-    public CommandPort(string portName = "COM9", int baudRate = 115200, Parity parity = Parity.None, int dataBits = 8, StopBits stopBits = StopBits.One)
+    // Конструктор класса CommandPort
+    public CommandPort(string portName = "COM5", int baudRate = 115200, Parity parity = Parity.None, int dataBits = 8, StopBits stopBits = StopBits.One)
     {
         serialPort = new SerialPort(portName, baudRate, parity, dataBits, stopBits);
     }
 
+    // Метод для открытия последовательного порта
     public void OpenPort()
     {
         try
         {
             serialPort.Open();
-            MessageBox.Show($"Порт {serialPort.PortName} успешно открыт.", "Информация", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            //MessageBox.Show($"Порт {serialPort.PortName} успешно открыт.", "Информация", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
         catch (Exception e)
         {
@@ -33,6 +35,7 @@ public class CommandPort
         }
     }
 
+    // Метод для закрытия последовательного порта
     public void ClosePort()
     {
         if (serialPort.IsOpen)
@@ -42,6 +45,7 @@ public class CommandPort
         }
     }
 
+    // Метод для чтения данных с последовательного порта
     public void ReadData()
     {
         try
@@ -63,7 +67,7 @@ public class CommandPort
                 }
 
                 var data = serialPort.ReadLine().Trim();
-                MessageBox.Show($"{data}", "Данные", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                //MessageBox.Show($"{data}", "Данные", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 UpdateFromMessage(data);
                 LogDataToFile(data);
             }
@@ -82,11 +86,13 @@ public class CommandPort
         }
     }
 
+    // Метод для записи данных в файл
     private void LogDataToFile(string data)
     {
         try
         {
-            using (StreamWriter writer = new StreamWriter("SerialDataLog.txt", true))
+            string logFilePath = @"C:\Tree\programming\GitHub\loraInterface\loraInterface\src\Class\CommandPort\received_data.txt";
+            using (StreamWriter writer = new StreamWriter(logFilePath, true))
             {
                 writer.WriteLine($"{DateTime.Now}: {data}");
             }
@@ -97,6 +103,7 @@ public class CommandPort
         }
     }
 
+    // Метод для отправки команды через последовательный порт
     public void SendCommand(string command)
     {
         try
@@ -104,7 +111,7 @@ public class CommandPort
             if (serialPort.IsOpen)
             {
                 serialPort.WriteLine(command);
-                MessageBox.Show($"Команда '{command}' отправлена.", "Информация", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                //MessageBox.Show($"Команда '{command}' отправлена.", "Информация", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
             {
@@ -127,6 +134,7 @@ public class CommandPort
         }
     }
 
+    // Метод для обновления данных на основе полученного сообщения
     public void UpdateFromMessage(string message)
     {
         try

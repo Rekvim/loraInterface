@@ -22,5 +22,8 @@
     <Compile Update="src\Controls\TurnTrackBar.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Update="src\Pages\TurnChart.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
   </ItemGroup>
 </Project>

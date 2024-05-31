@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Tree\\I\\library\\Git\\loraInterface\\loraInterface\\loraInterface.csproj": {}
+    "C:\\Tree\\programming\\GitHub\\loraInterface\\loraInterface\\loraInterface.csproj": {}
   },
   "projects": {
-    "D:\\Tree\\I\\library\\Git\\loraInterface\\loraInterface\\loraInterface.csproj": {
+    "C:\\Tree\\programming\\GitHub\\loraInterface\\loraInterface\\loraInterface.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Tree\\I\\library\\Git\\loraInterface\\loraInterface\\loraInterface.csproj",
+        "projectUniqueName": "C:\\Tree\\programming\\GitHub\\loraInterface\\loraInterface\\loraInterface.csproj",
         "projectName": "loraInterface",
-        "projectPath": "D:\\Tree\\I\\library\\Git\\loraInterface\\loraInterface\\loraInterface.csproj",
-        "packagesPath": "C:\\Users\\vladb\\.nuget\\packages\\",
-        "outputPath": "D:\\Tree\\I\\library\\Git\\loraInterface\\loraInterface\\obj\\",
+        "projectPath": "C:\\Tree\\programming\\GitHub\\loraInterface\\loraInterface\\loraInterface.csproj",
+        "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
+        "outputPath": "C:\\Tree\\programming\\GitHub\\loraInterface\\loraInterface\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\vladb\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -26,6 +26,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -49,6 +50,10 @@
         "net8.0-windows7.0": {
           "targetAlias": "net8.0-windows",
           "dependencies": {
+            "FastReport.DataVisualization": {
+              "target": "Package",
+              "version": "[2024.2.8, )"
+            },
             "Newtonsoft.Json": {
               "target": "Package",
               "version": "[13.0.3, )"
@@ -56,6 +61,10 @@
             "System.IO.Ports": {
               "target": "Package",
               "version": "[8.0.0, )"
+            },
+            "WinForms.DataVisualization": {
+              "target": "Package",
+              "version": "[1.9.2, )"
             }
           },
           "imports": [

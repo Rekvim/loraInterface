@@ -34,8 +34,6 @@
             buttonComandReset = new Controls.ButtonComand();
             buttonComand5 = new Controls.ButtonComand();
             turnTrackBar1 = new Controls.TurnTrackBar();
-            label1 = new Label();
-            label2 = new Label();
             SuspendLayout();
             // 
             // buttonComandOff
@@ -48,7 +46,7 @@
             buttonComandOff.Name = "buttonComandOff";
             buttonComandOff.Size = new Size(633, 40);
             buttonComandOff.TabIndex = 0;
-            buttonComandOff.Text = "buttonComandOff";
+            buttonComandOff.Text = "выключить турбину";
             buttonComandOff.Click += buttonComandOff_Click;
             // 
             // buttonComandOn
@@ -61,7 +59,7 @@
             buttonComandOn.Name = "buttonComandOn";
             buttonComandOn.Size = new Size(633, 40);
             buttonComandOn.TabIndex = 1;
-            buttonComandOn.Text = "buttonComandOn";
+            buttonComandOn.Text = "Включить турбину";
             buttonComandOn.Click += buttonComandOn_Click;
             // 
             // buttonComandTurn
@@ -74,7 +72,7 @@
             buttonComandTurn.Name = "buttonComandTurn";
             buttonComandTurn.Size = new Size(633, 40);
             buttonComandTurn.TabIndex = 2;
-            buttonComandTurn.Text = "buttonComandTurn";
+            buttonComandTurn.Text = "Задать обороты";
             buttonComandTurn.Click += buttonComandTurn_Click;
             // 
             // buttonComandReset
@@ -87,7 +85,7 @@
             buttonComandReset.Name = "buttonComandReset";
             buttonComandReset.Size = new Size(633, 40);
             buttonComandReset.TabIndex = 3;
-            buttonComandReset.Text = "buttonComandReset";
+            buttonComandReset.Text = "Перезагрузка";
             buttonComandReset.Click += buttonComandReset_Click;
             // 
             // buttonComand5
@@ -100,7 +98,7 @@
             buttonComand5.Name = "buttonComand5";
             buttonComand5.Size = new Size(633, 40);
             buttonComand5.TabIndex = 4;
-            buttonComand5.Text = "buttonComand5";
+            buttonComand5.Text = "повторный запуск отчета";
             buttonComand5.Click += buttonComand5_Click;
             // 
             // turnTrackBar1
@@ -115,31 +113,11 @@
             turnTrackBar1.Text = "turnTrackBar1";
             turnTrackBar1.Value = 0;
             // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Location = new Point(21, 258);
-            label1.Name = "label1";
-            label1.Size = new Size(38, 15);
-            label1.TabIndex = 6;
-            label1.Text = "label1";
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Location = new Point(21, 283);
-            label2.Name = "label2";
-            label2.Size = new Size(38, 15);
-            label2.TabIndex = 7;
-            label2.Text = "label2";
-            // 
             // PageCommands
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            Controls.Add(label2);
-            Controls.Add(label1);
             Controls.Add(turnTrackBar1);
             Controls.Add(buttonComand5);
             Controls.Add(buttonComandReset);
@@ -150,7 +128,6 @@
             Name = "PageCommands";
             Size = new Size(667, 422);
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
@@ -161,7 +138,5 @@
         private Controls.ButtonComand buttonComandReset;
         private Controls.ButtonComand buttonComand5;
         private Controls.TurnTrackBar turnTrackBar1;
-        private Label label1;
-        private Label label2;
     }
 }

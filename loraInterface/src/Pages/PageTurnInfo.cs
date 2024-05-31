@@ -1,25 +1,78 @@
-﻿using System;
+﻿
+using loraInterface.src.Controls;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+using System.IO;
+using Newtonsoft.Json;
 
 namespace loraInterface.src.Admin
 {
     public partial class PageTurnInfo : UserControl
     {
+        private System.Windows.Forms.Timer timer;
+
         public PageTurnInfo()
         {
             InitializeComponent();
+            InitializeTimer();
         }
 
-        private void userControl11_Load(object sender, EventArgs e)
+        private void InitializeTimer()
         {
+            timer = new System.Windows.Forms.Timer();
+            timer.Interval = 5000; // Обновление каждые 5 секунд (5000 миллисекунд)
+            timer.Tick += Timer_Tick;
+            timer.Start();
+        }
 
+        private void Timer_Tick(object sender, EventArgs e)
+        {
+            DisplayLastData(); // Обновляем данные при срабатывании таймера
+        }
+        private void DisplayLastData()
+        {
+            try
+            {
+                List<TurnData> turnDataList = TurnData.ReadTurnDataFromFile();
+
+                if (turnDataList.Count > 0)
+                {
+                    // Получаем последние данные
+                    TurnData lastTurnData = turnDataList[turnDataList.Count - 1];
+
+                    // Обновляем свойства элементов CellParamsInfo
+                    cellParamsInfoState.labelParamText = "Состояние:";
+                    cellParamsInfoState.labelValueText = lastTurnData.RotationStatus ? "ON" : "OFF";
+
+                    cellParamsInfoTurn.labelParamText = "Заданные обороты:";
+                    cellParamsInfoTurn.labelValueText = lastTurnData.TurnValue.ToString();
+
+                    cellParamsInfoActualTurn.labelParamText = "Актуальные обороты:";
+                    cellParamsInfoActualTurn.labelValueText = lastTurnData.ActualTurn.ToString();
+                }
+                else
+                {
+                    //MessageBox.Show("Данных нет, файл пустой.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    cellParamsInfoState.labelParamText = "Состояние:";
+                    cellParamsInfoState.labelValueText = "null";
+
+                    cellParamsInfoTurn.labelParamText = "Заданные обороты:";
+                    cellParamsInfoTurn.labelValueText = "null";
+
+                    cellParamsInfoActualTurn.labelParamText = "Актуальные обороты:";
+                    cellParamsInfoActualTurn.labelValueText = "null";
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error loading data from JSON: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void PageTurnInfo_Load(object sender, EventArgs e)
+        {
+            DisplayLastData();
         }
     }
 }

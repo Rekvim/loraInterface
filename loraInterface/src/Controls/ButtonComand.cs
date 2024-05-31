@@ -26,7 +26,7 @@ namespace loraInterface.src.Controls
             Font = new Font("Microsoft Sans Serif", 10, FontStyle.Regular);
 
             BackColor = Color.FromArgb(255, 255, 255);
-            Size = new Size(723, 54);
+            Size = new Size(633, 40);
 
             SF.Alignment = StringAlignment.Near;
             SF.LineAlignment = StringAlignment.Center;

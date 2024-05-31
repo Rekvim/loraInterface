@@ -3,18 +3,714 @@
     "rotationStatus": false,
     "turnValue": 100,
     "actualTurn": 0,
-    "data": "28.05.2024 18:44:14"
+    "data": "31.05.2024 14:32:04"
   },
   {
     "rotationStatus": true,
-    "turnValue": 230,
-    "actualTurn": 139,
-    "data": "28.05.2024 18:49:43"
+    "turnValue": 337,
+    "actualTurn": 137,
+    "data": "31.05.2024 14:33:12"
   },
   {
     "rotationStatus": true,
-    "turnValue": 660,
-    "actualTurn": 360,
-    "data": "30.05.2024 12:44:16"
+    "turnValue": 530,
+    "actualTurn": 530,
+    "data": "31.05.2024 14:34:12"
+  },
+  {
+    "rotationStatus": true,
+    "turnValue": 530,
+    "actualTurn": 530,
+    "data": "31.05.2024 14:35:10"
+  },
+  {
+    "rotationStatus": true,
+    "turnValue": 530,
+    "actualTurn": 530,
+    "data": "31.05.2024 14:36:10"
+  },
+  {
+    "rotationStatus": true,
+    "turnValue": 530,
+    "actualTurn": 530,
+    "data": "31.05.2024 14:37:08"
+  },
+  {
+    "rotationStatus": true,
+    "turnValue": 530,
+    "actualTurn": 530,
+    "data": "31.05.2024 14:38:08"
+  },
+  {
+    "rotationStatus": true,
+    "turnValue": 530,
+    "actualTurn": 530,
+    "data": "31.05.2024 14:39:06"
+  },
+  {
+    "rotationStatus": true,
+    "turnValue": 530,
+    "actualTurn": 530,
+    "data": "31.05.2024 14:40:05"
+  },
+  {
+    "rotationStatus": true,
+    "turnValue": 530,
+    "actualTurn": 530,
+    "data": "31.05.2024 14:41:04"
+  },
+  {
+    "rotationStatus": true,
+    "turnValue": 530,
+    "actualTurn": 530,
+    "data": "31.05.2024 14:42:03"
+  },
+  {
+    "rotationStatus": true,
+    "turnValue": 530,
+    "actualTurn": 530,
+    "data": "31.05.2024 14:43:02"
+  },
+  {
+    "rotationStatus": true,
+    "turnValue": 530,
+    "actualTurn": 530,
+    "data": "31.05.2024 14:44:01"
+  },
+  {
+    "rotationStatus": true,
+    "turnValue": 530,
+    "actualTurn": 530,
+    "data": "31.05.2024 14:45:00"
+  },
+  {
+    "rotationStatus": true,
+    "turnValue": 530,
+    "actualTurn": 530,
+    "data": "31.05.2024 14:45:59"
+  },
+  {
+    "rotationStatus": true,
+    "turnValue": 530,
+    "actualTurn": 530,
+    "data": "31.05.2024 14:46:58"
+  },
+  {
+    "rotationStatus": true,
+    "turnValue": 530,
+    "actualTurn": 530,
+    "data": "31.05.2024 14:47:57"
+  },
+  {
+    "rotationStatus": true,
+    "turnValue": 530,
+    "actualTurn": 530,
+    "data": "31.05.2024 14:48:56"
+  },
+  {
+    "rotationStatus": true,
+    "turnValue": 530,
+    "actualTurn": 530,
+    "data": "31.05.2024 14:49:55"
+  },
+  {
+    "rotationStatus": true,
+    "turnValue": 530,
+    "actualTurn": 530,
+    "data": "31.05.2024 14:50:54"
+  },
+  {
+    "rotationStatus": true,
+    "turnValue": 530,
+    "actualTurn": 530,
+    "data": "31.05.2024 14:51:53"
+  },
+  {
+    "rotationStatus": true,
+    "turnValue": 530,
+    "actualTurn": 530,
+    "data": "31.05.2024 14:52:52"
+  },
+  {
+    "rotationStatus": true,
+    "turnValue": 530,
+    "actualTurn": 530,
+    "data": "31.05.2024 14:53:51"
+  },
+  {
+    "rotationStatus": true,
+    "turnValue": 530,
+    "actualTurn": 530,
+    "data": "31.05.2024 14:54:50"
+  },
+  {
+    "rotationStatus": true,
+    "turnValue": 530,
+    "actualTurn": 530,
+    "data": "31.05.2024 14:55:49"
+  },
+  {
+    "rotationStatus": true,
+    "turnValue": 530,
+    "actualTurn": 530,
+    "data": "31.05.2024 14:56:48"
+  },
+  {
+    "rotationStatus": true,
+    "turnValue": 530,
+    "actualTurn": 530,
+    "data": "31.05.2024 14:57:47"
+  },
+  {
+    "rotationStatus": true,
+    "turnValue": 530,
+    "actualTurn": 530,
+    "data": "31.05.2024 14:58:46"
+  },
+  {
+    "rotationStatus": true,
+    "turnValue": 530,
+    "actualTurn": 530,
+    "data": "31.05.2024 14:59:45"
+  },
+  {
+    "rotationStatus": true,
+    "turnValue": 530,
+    "actualTurn": 530,
+    "data": "31.05.2024 15:00:44"
+  },
+  {
+    "rotationStatus": true,
+    "turnValue": 530,
+    "actualTurn": 530,
+    "data": "31.05.2024 15:01:43"
+  },
+  {
+    "rotationStatus": true,
+    "turnValue": 530,
+    "actualTurn": 530,
+    "data": "31.05.2024 15:02:42"
+  },
+  {
+    "rotationStatus": true,
+    "turnValue": 530,
+    "actualTurn": 530,
+    "data": "31.05.2024 15:03:41"
+  },
+  {
+    "rotationStatus": true,
+    "turnValue": 530,
+    "actualTurn": 530,
+    "data": "31.05.2024 15:04:40"
+  },
+  {
+    "rotationStatus": true,
+    "turnValue": 530,
+    "actualTurn": 530,
+    "data": "31.05.2024 15:05:39"
+  },
+  {
+    "rotationStatus": true,
+    "turnValue": 530,
+    "actualTurn": 530,
+    "data": "31.05.2024 15:06:38"
+  },
+  {
+    "rotationStatus": true,
+    "turnValue": 530,
+    "actualTurn": 530,
+    "data": "31.05.2024 15:07:37"
+  },
+  {
+    "rotationStatus": true,
+    "turnValue": 530,
+    "actualTurn": 530,
+    "data": "31.05.2024 15:08:36"
+  },
+  {
+    "rotationStatus": true,
+    "turnValue": 530,
+    "actualTurn": 530,
+    "data": "31.05.2024 15:09:35"
+  },
+  {
+    "rotationStatus": true,
+    "turnValue": 530,
+    "actualTurn": 530,
+    "data": "31.05.2024 15:10:34"
+  },
+  {
+    "rotationStatus": true,
+    "turnValue": 530,
+    "actualTurn": 530,
+    "data": "31.05.2024 15:11:33"
+  },
+  {
+    "rotationStatus": true,
+    "turnValue": 530,
+    "actualTurn": 530,
+    "data": "31.05.2024 15:12:32"
+  },
+  {
+    "rotationStatus": true,
+    "turnValue": 530,
+    "actualTurn": 530,
+    "data": "31.05.2024 15:13:31"
+  },
+  {
+    "rotationStatus": true,
+    "turnValue": 530,
+    "actualTurn": 530,
+    "data": "31.05.2024 15:14:30"
+  },
+  {
+    "rotationStatus": true,
+    "turnValue": 530,
+    "actualTurn": 530,
+    "data": "31.05.2024 15:15:29"
+  },
+  {
+    "rotationStatus": true,
+    "turnValue": 530,
+    "actualTurn": 530,
+    "data": "31.05.2024 15:16:29"
+  },
+  {
+    "rotationStatus": true,
+    "turnValue": 530,
+    "actualTurn": 530,
+    "data": "31.05.2024 15:17:27"
+  },
+  {
+    "rotationStatus": true,
+    "turnValue": 530,
+    "actualTurn": 530,
+    "data": "31.05.2024 15:18:27"
+  },
+  {
+    "rotationStatus": true,
+    "turnValue": 530,
+    "actualTurn": 530,
+    "data": "31.05.2024 15:19:25"
+  },
+  {
+    "rotationStatus": true,
+    "turnValue": 530,
+    "actualTurn": 530,
+    "data": "31.05.2024 15:20:25"
+  },
+  {
+    "rotationStatus": true,
+    "turnValue": 530,
+    "actualTurn": 530,
+    "data": "31.05.2024 15:21:23"
+  },
+  {
+    "rotationStatus": true,
+    "turnValue": 530,
+    "actualTurn": 530,
+    "data": "31.05.2024 15:22:22"
+  },
+  {
+    "rotationStatus": true,
+    "turnValue": 530,
+    "actualTurn": 530,
+    "data": "31.05.2024 15:23:21"
+  },
+  {
+    "rotationStatus": true,
+    "turnValue": 530,
+    "actualTurn": 530,
+    "data": "31.05.2024 15:24:20"
+  },
+  {
+    "rotationStatus": true,
+    "turnValue": 530,
+    "actualTurn": 530,
+    "data": "31.05.2024 15:25:19"
+  },
+  {
+    "rotationStatus": true,
+    "turnValue": 530,
+    "actualTurn": 530,
+    "data": "31.05.2024 15:26:18"
+  },
+  {
+    "rotationStatus": true,
+    "turnValue": 530,
+    "actualTurn": 530,
+    "data": "31.05.2024 15:27:17"
+  },
+  {
+    "rotationStatus": true,
+    "turnValue": 530,
+    "actualTurn": 530,
+    "data": "31.05.2024 15:28:16"
+  },
+  {
+    "rotationStatus": true,
+    "turnValue": 530,
+    "actualTurn": 530,
+    "data": "31.05.2024 15:29:15"
+  },
+  {
+    "rotationStatus": true,
+    "turnValue": 530,
+    "actualTurn": 530,
+    "data": "31.05.2024 15:30:14"
+  },
+  {
+    "rotationStatus": true,
+    "turnValue": 530,
+    "actualTurn": 530,
+    "data": "31.05.2024 15:31:13"
+  },
+  {
+    "rotationStatus": true,
+    "turnValue": 530,
+    "actualTurn": 530,
+    "data": "31.05.2024 15:32:12"
+  },
+  {
+    "rotationStatus": true,
+    "turnValue": 1042,
+    "actualTurn": 1009,
+    "data": "31.05.2024 15:33:16"
+  },
+  {
+    "rotationStatus": true,
+    "turnValue": 1170,
+    "actualTurn": 1170,
+    "data": "31.05.2024 15:34:15"
+  },
+  {
+    "rotationStatus": true,
+    "turnValue": 1170,
+    "actualTurn": 1170,
+    "data": "31.05.2024 15:36:13"
+  },
+  {
+    "rotationStatus": true,
+    "turnValue": 1170,
+    "actualTurn": 1170,
+    "data": "31.05.2024 15:37:12"
+  },
+  {
+    "rotationStatus": true,
+    "turnValue": 1170,
+    "actualTurn": 1170,
+    "data": "31.05.2024 15:38:11"
+  },
+  {
+    "rotationStatus": true,
+    "turnValue": 1170,
+    "actualTurn": 1170,
+    "data": "31.05.2024 15:39:10"
+  },
+  {
+    "rotationStatus": true,
+    "turnValue": 1170,
+    "actualTurn": 1170,
+    "data": "31.05.2024 15:40:09"
+  },
+  {
+    "rotationStatus": true,
+    "turnValue": 1170,
+    "actualTurn": 1170,
+    "data": "31.05.2024 15:41:08"
+  },
+  {
+    "rotationStatus": true,
+    "turnValue": 1170,
+    "actualTurn": 1170,
+    "data": "31.05.2024 15:42:07"
+  },
+  {
+    "rotationStatus": true,
+    "turnValue": 1170,
+    "actualTurn": 1170,
+    "data": "31.05.2024 15:43:06"
+  },
+  {
+    "rotationStatus": true,
+    "turnValue": 1170,
+    "actualTurn": 1170,
+    "data": "31.05.2024 15:44:05"
+  },
+  {
+    "rotationStatus": true,
+    "turnValue": 1170,
+    "actualTurn": 1170,
+    "data": "31.05.2024 15:45:04"
+  },
+  {
+    "rotationStatus": true,
+    "turnValue": 1170,
+    "actualTurn": 1170,
+    "data": "31.05.2024 15:46:03"
+  },
+  {
+    "rotationStatus": true,
+    "turnValue": 1170,
+    "actualTurn": 1170,
+    "data": "31.05.2024 15:47:02"
+  },
+  {
+    "rotationStatus": true,
+    "turnValue": 1170,
+    "actualTurn": 1170,
+    "data": "31.05.2024 15:48:01"
+  },
+  {
+    "rotationStatus": true,
+    "turnValue": 1170,
+    "actualTurn": 1170,
+    "data": "31.05.2024 15:49:00"
+  },
+  {
+    "rotationStatus": true,
+    "turnValue": 1170,
+    "actualTurn": 1170,
+    "data": "31.05.2024 15:49:59"
+  },
+  {
+    "rotationStatus": true,
+    "turnValue": 1170,
+    "actualTurn": 1170,
+    "data": "31.05.2024 15:50:58"
+  },
+  {
+    "rotationStatus": true,
+    "turnValue": 1170,
+    "actualTurn": 1170,
+    "data": "31.05.2024 15:51:57"
+  },
+  {
+    "rotationStatus": true,
+    "turnValue": 1170,
+    "actualTurn": 1170,
+    "data": "31.05.2024 15:52:56"
+  },
+  {
+    "rotationStatus": true,
+    "turnValue": 1170,
+    "actualTurn": 1170,
+    "data": "31.05.2024 15:53:55"
+  },
+  {
+    "rotationStatus": true,
+    "turnValue": 1170,
+    "actualTurn": 1170,
+    "data": "31.05.2024 15:54:54"
+  },
+  {
+    "rotationStatus": true,
+    "turnValue": 1170,
+    "actualTurn": 1170,
+    "data": "31.05.2024 15:55:53"
+  },
+  {
+    "rotationStatus": true,
+    "turnValue": 1170,
+    "actualTurn": 1170,
+    "data": "31.05.2024 15:56:52"
+  },
+  {
+    "rotationStatus": true,
+    "turnValue": 1170,
+    "actualTurn": 1170,
+    "data": "31.05.2024 15:57:51"
+  },
+  {
+    "rotationStatus": true,
+    "turnValue": 1170,
+    "actualTurn": 1170,
+    "data": "31.05.2024 15:58:50"
+  },
+  {
+    "rotationStatus": true,
+    "turnValue": 1170,
+    "actualTurn": 1170,
+    "data": "31.05.2024 15:59:49"
+  },
+  {
+    "rotationStatus": true,
+    "turnValue": 1170,
+    "actualTurn": 1170,
+    "data": "31.05.2024 16:00:48"
+  },
+  {
+    "rotationStatus": true,
+    "turnValue": 1170,
+    "actualTurn": 1170,
+    "data": "31.05.2024 16:01:47"
+  },
+  {
+    "rotationStatus": true,
+    "turnValue": 1170,
+    "actualTurn": 1170,
+    "data": "31.05.2024 16:02:46"
+  },
+  {
+    "rotationStatus": true,
+    "turnValue": 1170,
+    "actualTurn": 1170,
+    "data": "31.05.2024 16:03:45"
+  },
+  {
+    "rotationStatus": true,
+    "turnValue": 1170,
+    "actualTurn": 1170,
+    "data": "31.05.2024 16:04:44"
+  },
+  {
+    "rotationStatus": true,
+    "turnValue": 1170,
+    "actualTurn": 1170,
+    "data": "31.05.2024 16:05:43"
+  },
+  {
+    "rotationStatus": true,
+    "turnValue": 1170,
+    "actualTurn": 1170,
+    "data": "31.05.2024 16:06:42"
+  },
+  {
+    "rotationStatus": true,
+    "turnValue": 1170,
+    "actualTurn": 1170,
+    "data": "31.05.2024 16:07:41"
+  },
+  {
+    "rotationStatus": true,
+    "turnValue": 1170,
+    "actualTurn": 1170,
+    "data": "31.05.2024 16:08:40"
+  },
+  {
+    "rotationStatus": true,
+    "turnValue": 1170,
+    "actualTurn": 1170,
+    "data": "31.05.2024 16:09:39"
+  },
+  {
+    "rotationStatus": true,
+    "turnValue": 1170,
+    "actualTurn": 1170,
+    "data": "31.05.2024 16:10:38"
+  },
+  {
+    "rotationStatus": true,
+    "turnValue": 1170,
+    "actualTurn": 1170,
+    "data": "31.05.2024 16:11:37"
+  },
+  {
+    "rotationStatus": true,
+    "turnValue": 1170,
+    "actualTurn": 1170,
+    "data": "31.05.2024 16:12:36"
+  },
+  {
+    "rotationStatus": true,
+    "turnValue": 1170,
+    "actualTurn": 1170,
+    "data": "31.05.2024 16:13:35"
+  },
+  {
+    "rotationStatus": true,
+    "turnValue": 1170,
+    "actualTurn": 1170,
+    "data": "31.05.2024 16:14:34"
+  },
+  {
+    "rotationStatus": true,
+    "turnValue": 1170,
+    "actualTurn": 1170,
+    "data": "31.05.2024 16:15:33"
+  },
+  {
+    "rotationStatus": true,
+    "turnValue": 1170,
+    "actualTurn": 1170,
+    "data": "31.05.2024 16:16:32"
+  },
+  {
+    "rotationStatus": true,
+    "turnValue": 1170,
+    "actualTurn": 1170,
+    "data": "31.05.2024 16:17:31"
+  },
+  {
+    "rotationStatus": true,
+    "turnValue": 1170,
+    "actualTurn": 1170,
+    "data": "31.05.2024 16:18:30"
+  },
+  {
+    "rotationStatus": true,
+    "turnValue": 1170,
+    "actualTurn": 1170,
+    "data": "31.05.2024 16:19:29"
+  },
+  {
+    "rotationStatus": true,
+    "turnValue": 1170,
+    "actualTurn": 1170,
+    "data": "31.05.2024 16:20:28"
+  },
+  {
+    "rotationStatus": true,
+    "turnValue": 1170,
+    "actualTurn": 1170,
+    "data": "31.05.2024 16:21:27"
+  },
+  {
+    "rotationStatus": true,
+    "turnValue": 1170,
+    "actualTurn": 1170,
+    "data": "31.05.2024 16:22:26"
+  },
+  {
+    "rotationStatus": true,
+    "turnValue": 1170,
+    "actualTurn": 1170,
+    "data": "31.05.2024 16:23:25"
+  },
+  {
+    "rotationStatus": true,
+    "turnValue": 1170,
+    "actualTurn": 1170,
+    "data": "31.05.2024 16:24:24"
+  },
+  {
+    "rotationStatus": true,
+    "turnValue": 1170,
+    "actualTurn": 1170,
+    "data": "31.05.2024 16:25:23"
+  },
+  {
+    "rotationStatus": true,
+    "turnValue": 1170,
+    "actualTurn": 1170,
+    "data": "31.05.2024 16:26:22"
+  },
+  {
+    "rotationStatus": true,
+    "turnValue": 1170,
+    "actualTurn": 1170,
+    "data": "31.05.2024 16:27:21"
+  },
+  {
+    "rotationStatus": true,
+    "turnValue": 1170,
+    "actualTurn": 1170,
+    "data": "31.05.2024 16:28:20"
+  },
+  {
+    "rotationStatus": true,
+    "turnValue": 1170,
+    "actualTurn": 1170,
+    "data": "31.05.2024 16:29:19"
   }
 ]
