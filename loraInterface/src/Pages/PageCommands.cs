@@ -1,19 +1,30 @@
 ﻿using System;
 using System.Windows.Forms;
+using Timer = System.Windows.Forms.Timer;
 
 namespace loraInterface.src.Admin
 {
     public partial class PageCommands : UserControl
     {
         private CommandPort commandPort;
+        private Timer updateTimer;
 
         public PageCommands(CommandPort commandPort)
         {
             InitializeComponent();
             this.commandPort = commandPort;
+            labelStateCommand.Text = "";
+
+            updateTimer = new Timer();
+            updateTimer.Interval = 5000; // 1 second
+            updateTimer.Tick += new EventHandler(UpdateLabelStateCommand);
+            updateTimer.Start();
         }
 
-
+        private void UpdateLabelStateCommand(object sender, EventArgs e)
+        {
+            labelStateCommand.Text = commandPort.sendDataState;
+        }
         private void buttonComandOff_Click(object sender, EventArgs e)
         {
             commandPort.SetCommand("/CMD/SET/RATATION/OFF/\r");

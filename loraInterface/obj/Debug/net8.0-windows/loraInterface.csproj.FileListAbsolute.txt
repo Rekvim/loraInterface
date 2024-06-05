@@ -152,4 +152,3 @@ C:\Tree\programming\GitHub\loraInterface\loraInterface\bin\Debug\net8.0-windows\
 C:\Tree\programming\GitHub\loraInterface\loraInterface\bin\Debug\net8.0-windows\zh-Hans\Microsoft.CodeAnalysis.VisualBasic.resources.dll
 C:\Tree\programming\GitHub\loraInterface\loraInterface\bin\Debug\net8.0-windows\zh-Hant\Microsoft.CodeAnalysis.VisualBasic.resources.dll
 C:\Tree\programming\GitHub\loraInterface\loraInterface\obj\Debug\net8.0-windows\loraInterface.src.Pages.TurnChart.resources
-C:\Tree\programming\GitHub\loraInterface\loraInterface\obj\Debug\net8.0-windows\loraInterface.src.Controls.NotificationControl.resources

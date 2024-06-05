@@ -15,6 +15,7 @@ public class CommandPort
 
     public string command = ""; // Переменная для хранения текущей команды
     public bool sendData = false; // Флаг для указания на необходимость отправки данных
+    public string sendDataState = ""; // Флаг для указания на необходимость отправки данных
 
     // Конструктор класса CommandPort
     public CommandPort(string portName = "COM5", int baudRate = 115200, Parity parity = Parity.None, int dataBits = 8, StopBits stopBits = StopBits.One)
@@ -69,14 +70,19 @@ public void ReadData()
             // Обработка принятых сообщений
             if (data == "NOT SEND")
             {
-                // Повторная отправка последней команды
-                SendCommand(command);
+                    // Повторная отправка последней команды
+                    sendDataState = "Данные не получены! Повторая отправка...";
+                    Thread.Sleep(5000);
+                    SendCommand(command);
             }
             else if (Regex.IsMatch(data, @"^Receive .+ rssi dbm : -\d+ signal rssi dbm : -\d+ snr db : \d+$"))
             {
-                // Сообщение о принятии команды
-                MessageBox.Show("Команда принята.", "Информация", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
+                    sendDataState = "Данные получены!";
+                    Thread.Sleep(5000);
+                    sendDataState = "";
+                    // Сообщение о принятии команды
+                    //MessageBox.Show("Команда принята.", "Информация", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
 
             // Логирование принятых данных
             UpdateFromMessage(data);
@@ -122,7 +128,9 @@ public void ReadData()
         {
             if (serialPort.IsOpen)
             {
+                sendDataState = "Отправка...";
                 serialPort.WriteLine(command);
+                sendDataState = "Обрабатывается...";
                 //MessageBox.Show($"Команда '{command}' отправлена.", "Информация", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else

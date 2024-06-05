@@ -11,25 +11,33 @@ namespace loraInterface
 {
     public partial class Main : Form
     {
-
         private CommandPort commandPort;
 
         public Main()
         {
             InitializeComponent();
+            commandPort = new CommandPort(); // Instantiate the commandPort object
         }
+
         private void Main_Load(object sender, EventArgs e)
         {
             // Запускаем обработку COM порта при загрузке формы
-            commandPort.OpenPort();
-            Task.Run(() => ReadDataFromPort());
+            if (commandPort != null)
+            {
+                commandPort.OpenPort();
+                Task.Run(() => ReadDataFromPort());
+            }
+            else
+            {
+                MessageBox.Show("commandPort is not initialized.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void ReadDataFromPort()
         {
             while (true)
             {
-                commandPort.ReadData();
+                commandPort?.ReadData(); // Using null-conditional operator to avoid NullReferenceException
                 // Делаем задержку в 1 секунду
                 Thread.Sleep(1000);
             }

@@ -34,6 +34,7 @@
             buttonComandReset = new Controls.ButtonComand();
             buttonComand5 = new Controls.ButtonComand();
             turnTrackBar1 = new Controls.TurnTrackBar();
+            labelStateCommand = new Label();
             SuspendLayout();
             // 
             // buttonComandOff
@@ -113,11 +114,21 @@
             turnTrackBar1.Text = "turnTrackBar1";
             turnTrackBar1.Value = 0;
             // 
+            // labelStateCommand
+            // 
+            labelStateCommand.AutoSize = true;
+            labelStateCommand.Location = new Point(21, 275);
+            labelStateCommand.Name = "labelStateCommand";
+            labelStateCommand.Size = new Size(38, 15);
+            labelStateCommand.TabIndex = 6;
+            labelStateCommand.Text = "label1";
+            // 
             // PageCommands
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
+            Controls.Add(labelStateCommand);
             Controls.Add(turnTrackBar1);
             Controls.Add(buttonComand5);
             Controls.Add(buttonComandReset);
@@ -128,6 +139,7 @@
             Name = "PageCommands";
             Size = new Size(667, 422);
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -138,5 +150,6 @@
         private Controls.ButtonComand buttonComandReset;
         private Controls.ButtonComand buttonComand5;
         private Controls.TurnTrackBar turnTrackBar1;
+        private Label labelStateCommand;
     }
 }
