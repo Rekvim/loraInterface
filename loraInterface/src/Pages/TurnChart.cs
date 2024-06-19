@@ -11,12 +11,15 @@ namespace loraInterface.src.Pages
     {
         private Chart chart; // График для отображения данных
         private System.Windows.Forms.Timer timer; // Таймер для обновления данных
+        private Button changeIntervalButton; // Кнопка для смены интервала
+        private DateTimeIntervalType currentIntervalType; // Текущий тип интервала
 
         public TurnChart()
         {
             InitializeChart(); // Инициализация компонентов графика
             LoadData(); // Загрузка начальных данных
             InitializeTimer(); // Инициализация таймера для периодической загрузки данных
+            InitializeButton(); // Инициализация кнопки для смены интервала
         }
 
         // Метод для инициализации компонентов графика
@@ -30,13 +33,13 @@ namespace loraInterface.src.Pages
 
             ChartArea chartArea = new ChartArea
             {
-                Name = "Графикк Дата/Актуальные вращения",
+                Name = "График Дата/Актуальные вращения",
                 AxisX =
                 {
                     Title = "Дата", // Название оси X
-                    IntervalType = DateTimeIntervalType.Auto, // Автоматический интервал по дате
-                    Interval = 1, // Интервал в днях
-                    LabelStyle = { Format = "dd.MM HH:mm" } // Формат отображения даты
+                    IntervalType = DateTimeIntervalType.Minutes, // Автоматический интервал по дате
+                    Interval = 1, // Интервал
+                    LabelStyle = { Format = "HH:mm" } // Формат отображения даты
                 },
                 AxisY = { Title = "Актуальные вращения" } // Название оси Y
             };
@@ -52,7 +55,10 @@ namespace loraInterface.src.Pages
             };
 
             chart.Series.Add(series); // Добавление серии данных на график
+            chart.MouseWheel += Chart_MouseWheel; // Подписка на событие MouseWheel для графика
             this.Controls.Add(chart); // Добавление графика на панель управления
+
+            currentIntervalType = DateTimeIntervalType.Minutes; // Изначально устанавливаем интервал на минуты
         }
 
         // Метод для загрузки данных на график из файла
@@ -96,6 +102,68 @@ namespace loraInterface.src.Pages
         private void Timer_Tick(object sender, EventArgs e)
         {
             LoadData(); // Вызываем метод загрузки данных
+        }
+
+        // Метод для инициализации кнопки для смены интервала
+        private void InitializeButton()
+        {
+            changeIntervalButton = new Button
+            {
+                Text = "Изменить маштабирование",
+                Dock = DockStyle.Top // Размещаем кнопку в верхней части панели управления
+            };
+            changeIntervalButton.Click += ChangeIntervalButton_Click; // Устанавливаем обработчик события Click для кнопки
+            this.Controls.Add(changeIntervalButton); // Добавление кнопки на панель управления
+        }
+
+        // Обработчик события Click кнопки для смены интервала
+        private void ChangeIntervalButton_Click(object sender, EventArgs e)
+        {
+            if (currentIntervalType == DateTimeIntervalType.Minutes)
+            {
+                currentIntervalType = DateTimeIntervalType.Hours;
+                chart.ChartAreas[0].AxisX.IntervalType = DateTimeIntervalType.Hours; // Меняем интервал на часы
+                chart.ChartAreas[0].AxisX.LabelStyle.Format = "HH:mm"; // Изменяем формат отображения на часы и минуты
+            }
+            else
+            {
+                currentIntervalType = DateTimeIntervalType.Minutes;
+                chart.ChartAreas[0].AxisX.IntervalType = DateTimeIntervalType.Minutes; // Меняем интервал на минуты
+                chart.ChartAreas[0].AxisX.LabelStyle.Format = "HH:mm"; // Изменяем формат отображения на часы и минуты
+            }
+
+            chart.Invalidate(); // Перерисовываем график для применения изменений
+        }
+
+        // Обработчик события MouseWheel для масштабирования графика
+        private void Chart_MouseWheel(object sender, MouseEventArgs e)
+        {
+            try
+            {
+                var chartArea = chart.ChartAreas[0];
+
+                if (e.Delta < 0) // Zoom out
+                {
+                    chartArea.AxisX.ScaleView.ZoomReset();
+                    chartArea.AxisY.ScaleView.ZoomReset();
+                }
+                else if (e.Delta > 0) // Zoom in
+                {
+                    double xMin = chartArea.AxisX.ScaleView.ViewMinimum;
+                    double xMax = chartArea.AxisX.ScaleView.ViewMaximum;
+                    double yMin = chartArea.AxisY.ScaleView.ViewMinimum;
+                    double yMax = chartArea.AxisY.ScaleView.ViewMaximum;
+
+                    double posXStart = chartArea.AxisX.PixelPositionToValue(e.Location.X) - (xMax - xMin) / 3;
+                    double posXFinish = chartArea.AxisX.PixelPositionToValue(e.Location.X) + (xMax - xMin) / 3;
+                    double posYStart = chartArea.AxisY.PixelPositionToValue(e.Location.Y) - (yMax - yMin) / 3;
+                    double posYFinish = chartArea.AxisY.PixelPositionToValue(e.Location.Y) + (yMax - yMin) / 3;
+
+                    chartArea.AxisX.ScaleView.Zoom(posXStart, posXFinish);
+                    chartArea.AxisY.ScaleView.Zoom(posYStart, posYFinish);
+                }
+            }
+            catch { }
         }
     }
 }

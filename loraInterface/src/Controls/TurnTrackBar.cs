@@ -51,6 +51,7 @@ namespace loraInterface.src.Controls
             }
         }
 
+
         protected virtual void OnValueChanged(EventArgs e)
         {
             ValueChanged?.Invoke(this, e);

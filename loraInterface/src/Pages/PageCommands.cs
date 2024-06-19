@@ -1,4 +1,6 @@
-﻿using System;
+﻿using loraInterface.src.Controls;
+using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
 using Timer = System.Windows.Forms.Timer;
 
@@ -7,7 +9,9 @@ namespace loraInterface.src.Admin
     public partial class PageCommands : UserControl
     {
         private CommandPort commandPort;
-        private Timer updateTimer;
+        private System.Windows.Forms.Timer updateTimer;
+        private List<TurnData> turnDataList;
+
 
         public PageCommands(CommandPort commandPort)
         {
@@ -16,15 +20,34 @@ namespace loraInterface.src.Admin
             labelStateCommand.Text = "";
 
             updateTimer = new Timer();
-            updateTimer.Interval = 5000; // 1 second
+            updateTimer.Interval = 5000; // 5 секунд
             updateTimer.Tick += new EventHandler(UpdateLabelStateCommand);
+
             updateTimer.Start();
+
+            LoadData(); // Загрузка данных при инициализации
+        }
+
+        private void LoadData()
+        {
+            turnDataList = TurnData.ReadTurnDataFromFile();
+            if (turnDataList.Count > 0)
+            {
+                TurnData lastTurnData = turnDataList[turnDataList.Count - 1];
+                turnTrackBar1.Value = lastTurnData.TurnValue; // Установка начального значения
+            }
         }
 
         private void UpdateLabelStateCommand(object sender, EventArgs e)
         {
-            labelStateCommand.Text = commandPort.sendDataState;
+
+                TurnData lastTurnData = turnDataList[turnDataList.Count - 1];
+
+                labelStateCommand.Text = commandPort.sendDataState;
+                turnTrackBar1.Value = lastTurnData.TurnValue; // Обновление значения TurnTrackBar
+            
         }
+
         private void buttonComandOff_Click(object sender, EventArgs e)
         {
             commandPort.SetCommand("/CMD/SET/RATATION/OFF/\r");

@@ -12,9 +12,6 @@ namespace loraInterface.src.Controls
 
         private Label labelParam;
         private Label labelValue;
-
-        
-
         public string labelParamText
         {
             get { return labelParam.Text; }

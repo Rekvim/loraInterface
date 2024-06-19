@@ -1,11 +1,5 @@
-﻿using loraInterface.src.Controls;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.IO.Ports;
+﻿using System.IO.Ports;
 using System.Text.RegularExpressions;
-using System.Threading;
-using System.Windows.Forms;
 
 public class CommandPort
 {

@@ -16,7 +16,7 @@ namespace loraInterface
         public Main()
         {
             InitializeComponent();
-            commandPort = new CommandPort(); // Instantiate the commandPort object
+            commandPort = new CommandPort();
         }
 
         private void Main_Load(object sender, EventArgs e)
@@ -29,7 +29,7 @@ namespace loraInterface
             }
             else
             {
-                MessageBox.Show("commandPort is not initialized.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("commandPort не инициализирован.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -37,7 +37,7 @@ namespace loraInterface
         {
             while (true)
             {
-                commandPort?.ReadData(); // Using null-conditional operator to avoid NullReferenceException
+                commandPort?.ReadData(); 
                 // Делаем задержку в 1 секунду
                 Thread.Sleep(1000);
             }
