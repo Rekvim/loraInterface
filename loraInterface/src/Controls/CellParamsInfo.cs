@@ -1,13 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing.Drawing2D;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace loraInterface.src.Controls
+﻿namespace loraInterface.src.Controls
 {
-    public class CellParamsInfo : Control
+    internal class CellParamsInfo : Control
     {
 
         private Label labelParam;
@@ -30,7 +23,7 @@ namespace loraInterface.src.Controls
             labelParam = new Label
             {
                 AutoSize = true,
-                Font = new Font("Microsoft Sans Serif", 10, FontStyle.Regular),
+                Font = new Font("Montserrat", 10, FontStyle.Regular),
                 ForeColor = Color.Black,
                 Location = new Point(0, 0)
             };
@@ -38,7 +31,7 @@ namespace loraInterface.src.Controls
             labelValue = new Label
             {
                 AutoSize = true,
-                Font = new Font("Microsoft Sans Serif", 10, FontStyle.Regular),
+                Font = new Font("Montserrat", 10, FontStyle.Regular),
 
                 ForeColor = Color.Black,
                 Location = new Point(0, 0)
@@ -87,8 +80,8 @@ namespace loraInterface.src.Controls
             base.OnPaint(e);
             e.Graphics.Clear(Parent?.BackColor ?? SystemColors.Control);
             int BorderSize = 1;
-            Color BorderColor = Color.FromArgb(0, 0, 0);
-            using (SolidBrush brush = new SolidBrush(BorderColor)) // border снизу
+
+            using (SolidBrush brush = new SolidBrush(Color.Black)) // border снизу
             {
                 e.Graphics.FillRectangle(brush, 0, Height - BorderSize, Width, BorderSize);
             }

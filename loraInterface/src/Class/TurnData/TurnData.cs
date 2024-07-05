@@ -85,8 +85,8 @@ public class TurnData
     public static List<TurnData> ReadTurnDataFromFile()
     {
         string currentDirectory = Directory.GetCurrentDirectory();
-        //string pathFile = Path.Combine("D:\\Tree\\I\\library\\Git\\loraInterface\\loraInterface\\src\\Class\\TurnData\\turn_data.json");
-        string pathFile = Path.Combine("C:\\Tree\\programming\\GitHub\\loraInterface\\loraInterface\\src\\Class\\TurnData\\turn_data.json");
+        string pathFile = Path.Combine("D:\\Tree\\I\\library\\Git\\loraInterface\\loraInterface\\src\\Class\\TurnData\\turn_data.json");
+        //string pathFile = Path.Combine("C:\\Tree\\programming\\GitHub\\loraInterface\\loraInterface\\src\\Class\\TurnData\\turn_data.json");
         try
         {
             if (!File.Exists(pathFile))
@@ -114,8 +114,8 @@ public class TurnData
     public static void WriteTurnDataToFile(List<TurnData> turnDataList)
     {
         string currentDirectory = Directory.GetCurrentDirectory();
-        //string pathFile = Path.Combine("D:\\Tree\\I\\library\\Git\\loraInterface\\loraInterface\\src\\Class\\TurnData\\turn_data.json");
-        string pathFile = Path.Combine("C:\\Tree\\programming\\GitHub\\loraInterface\\loraInterface\\src\\Class\\TurnData\\turn_data.json");
+        string pathFile = Path.Combine("D:\\Tree\\I\\library\\Git\\loraInterface\\loraInterface\\src\\Class\\TurnData\\turn_data.json");
+        //string pathFile = Path.Combine("C:\\Tree\\programming\\GitHub\\loraInterface\\loraInterface\\src\\Class\\TurnData\\turn_data.json");
 
         try
         {

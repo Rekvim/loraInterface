@@ -32,10 +32,13 @@
             // 
             // TurnChart
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(11F, 24F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.WhiteSmoke;
+            Font = new Font("Montserrat", 10F);
+            Margin = new Padding(4, 5, 4, 5);
             Name = "TurnChart";
-            Size = new Size(667, 422);
+            Size = new Size(1048, 675);
             ResumeLayout(false);
         }
 

@@ -31,104 +31,100 @@
             buttonComandOff = new Controls.ButtonComand();
             buttonComandOn = new Controls.ButtonComand();
             buttonComandTurn = new Controls.ButtonComand();
+            turnTrackBar1 = new Controls.TurnTrackBar();
             buttonComandReset = new Controls.ButtonComand();
             buttonComand5 = new Controls.ButtonComand();
-            turnTrackBar1 = new Controls.TurnTrackBar();
-            labelStateCommand = new Label();
             SuspendLayout();
             // 
             // buttonComandOff
             // 
-            buttonComandOff.BackColor = Color.FromArgb(255, 255, 255);
-            buttonComandOff.Font = new Font("Microsoft Sans Serif", 10F);
+            buttonComandOff.BackColor = Color.Transparent;
+            buttonComandOff.Dock = DockStyle.Top;
+            buttonComandOff.Font = new Font("Montserrat", 10F);
             buttonComandOff.ForeColor = Color.Black;
-            buttonComandOff.Location = new Point(18, 0);
-            buttonComandOff.Margin = new Padding(3, 2, 3, 2);
+            buttonComandOff.Location = new Point(0, 0);
+            buttonComandOff.Margin = new Padding(4, 3, 4, 3);
             buttonComandOff.Name = "buttonComandOff";
-            buttonComandOff.Size = new Size(633, 40);
+            buttonComandOff.Size = new Size(953, 56);
             buttonComandOff.TabIndex = 0;
-            buttonComandOff.Text = "выключить турбину";
+            buttonComandOff.Text = "Выключить турбину";
             buttonComandOff.Click += buttonComandOff_Click;
             // 
             // buttonComandOn
             // 
-            buttonComandOn.BackColor = Color.FromArgb(255, 255, 255);
-            buttonComandOn.Font = new Font("Microsoft Sans Serif", 10F);
+            buttonComandOn.BackColor = Color.Transparent;
+            buttonComandOn.Dock = DockStyle.Top;
+            buttonComandOn.Font = new Font("Montserrat", 10F);
             buttonComandOn.ForeColor = Color.Black;
-            buttonComandOn.Location = new Point(18, 40);
-            buttonComandOn.Margin = new Padding(3, 2, 3, 2);
+            buttonComandOn.Location = new Point(0, 56);
+            buttonComandOn.Margin = new Padding(4, 3, 4, 3);
             buttonComandOn.Name = "buttonComandOn";
-            buttonComandOn.Size = new Size(633, 40);
+            buttonComandOn.Size = new Size(953, 56);
             buttonComandOn.TabIndex = 1;
             buttonComandOn.Text = "Включить турбину";
             buttonComandOn.Click += buttonComandOn_Click;
             // 
             // buttonComandTurn
             // 
-            buttonComandTurn.BackColor = Color.FromArgb(255, 255, 255);
-            buttonComandTurn.Font = new Font("Microsoft Sans Serif", 10F);
+            buttonComandTurn.BackColor = Color.WhiteSmoke;
+            buttonComandTurn.Dock = DockStyle.Top;
+            buttonComandTurn.Font = new Font("Montserrat", 10F);
             buttonComandTurn.ForeColor = Color.Black;
-            buttonComandTurn.Location = new Point(18, 81);
-            buttonComandTurn.Margin = new Padding(3, 2, 3, 2);
+            buttonComandTurn.Location = new Point(0, 112);
+            buttonComandTurn.Margin = new Padding(4, 3, 4, 3);
             buttonComandTurn.Name = "buttonComandTurn";
-            buttonComandTurn.Size = new Size(633, 40);
+            buttonComandTurn.Size = new Size(953, 56);
             buttonComandTurn.TabIndex = 2;
             buttonComandTurn.Text = "Задать обороты";
             buttonComandTurn.Click += buttonComandTurn_Click;
             // 
+            // turnTrackBar1
+            // 
+            turnTrackBar1.Dock = DockStyle.Top;
+            turnTrackBar1.Font = new Font("Montserrat", 10F);
+            turnTrackBar1.Location = new Point(0, 168);
+            turnTrackBar1.Margin = new Padding(4, 3, 4, 3);
+            turnTrackBar1.Maximum = 2000;
+            turnTrackBar1.Minimum = 0;
+            turnTrackBar1.Name = "turnTrackBar1";
+            turnTrackBar1.Size = new Size(953, 70);
+            turnTrackBar1.TabIndex = 3;
+            turnTrackBar1.Text = "turnTrackBar1";
+            turnTrackBar1.Value = 0;
+            // 
             // buttonComandReset
             // 
-            buttonComandReset.BackColor = Color.FromArgb(255, 255, 255);
-            buttonComandReset.Font = new Font("Microsoft Sans Serif", 10F);
+            buttonComandReset.BackColor = Color.Transparent;
+            buttonComandReset.Dock = DockStyle.Bottom;
+            buttonComandReset.Font = new Font("Montserrat", 10F);
             buttonComandReset.ForeColor = Color.Black;
-            buttonComandReset.Location = new Point(18, 163);
-            buttonComandReset.Margin = new Padding(3, 2, 3, 2);
+            buttonComandReset.Location = new Point(0, 535);
+            buttonComandReset.Margin = new Padding(4, 3, 4, 3);
             buttonComandReset.Name = "buttonComandReset";
-            buttonComandReset.Size = new Size(633, 40);
-            buttonComandReset.TabIndex = 3;
+            buttonComandReset.Size = new Size(953, 56);
+            buttonComandReset.TabIndex = 5;
             buttonComandReset.Text = "Перезагрузка";
             buttonComandReset.Click += buttonComandReset_Click;
             // 
             // buttonComand5
             // 
-            buttonComand5.BackColor = Color.FromArgb(255, 255, 255);
-            buttonComand5.Font = new Font("Microsoft Sans Serif", 10F);
+            buttonComand5.BackColor = Color.Transparent;
+            buttonComand5.Dock = DockStyle.Bottom;
+            buttonComand5.Font = new Font("Montserrat", 10F);
             buttonComand5.ForeColor = Color.Black;
-            buttonComand5.Location = new Point(18, 203);
-            buttonComand5.Margin = new Padding(3, 2, 3, 2);
+            buttonComand5.Location = new Point(0, 479);
+            buttonComand5.Margin = new Padding(4, 3, 4, 3);
             buttonComand5.Name = "buttonComand5";
-            buttonComand5.Size = new Size(633, 40);
+            buttonComand5.Size = new Size(953, 56);
             buttonComand5.TabIndex = 4;
-            buttonComand5.Text = "повторный запуск отчета";
+            buttonComand5.Text = "Повторный запуск отчета";
             buttonComand5.Click += buttonComand5_Click;
-            // 
-            // turnTrackBar1
-            // 
-            turnTrackBar1.Location = new Point(18, 122);
-            turnTrackBar1.Margin = new Padding(3, 2, 3, 2);
-            turnTrackBar1.Maximum = 2000;
-            turnTrackBar1.Minimum = 0;
-            turnTrackBar1.Name = "turnTrackBar1";
-            turnTrackBar1.Size = new Size(633, 41);
-            turnTrackBar1.TabIndex = 5;
-            turnTrackBar1.Text = "turnTrackBar1";
-            turnTrackBar1.Value = 0;
-            // 
-            // labelStateCommand
-            // 
-            labelStateCommand.AutoSize = true;
-            labelStateCommand.Location = new Point(21, 275);
-            labelStateCommand.Name = "labelStateCommand";
-            labelStateCommand.Size = new Size(38, 15);
-            labelStateCommand.TabIndex = 6;
-            labelStateCommand.Text = "label1";
             // 
             // PageCommands
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(10F, 21F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.White;
-            Controls.Add(labelStateCommand);
+            BackColor = Color.WhiteSmoke;
             Controls.Add(turnTrackBar1);
             Controls.Add(buttonComand5);
             Controls.Add(buttonComandReset);
@@ -137,9 +133,8 @@
             Controls.Add(buttonComandOff);
             Margin = new Padding(0);
             Name = "PageCommands";
-            Size = new Size(667, 422);
+            Size = new Size(953, 591);
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
@@ -147,9 +142,9 @@
         private Controls.ButtonComand buttonComandOff;
         private Controls.ButtonComand buttonComandOn;
         private Controls.ButtonComand buttonComandTurn;
+        private Controls.TurnTrackBar turnTrackBar1;
         private Controls.ButtonComand buttonComandReset;
         private Controls.ButtonComand buttonComand5;
-        private Controls.TurnTrackBar turnTrackBar1;
-        private Label labelStateCommand;
+
     }
 }

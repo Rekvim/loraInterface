@@ -28,7 +28,7 @@ namespace loraInterface.src.Pages
             chart = new Chart
             {
                 Dock = DockStyle.Fill, // Растягиваем график на всю панель управления
-                BackColor = Color.White // Белый фон графика
+                BackColor = Color.WhiteSmoke // Белый фон графика
             };
 
             ChartArea chartArea = new ChartArea
@@ -109,7 +109,9 @@ namespace loraInterface.src.Pages
         {
             changeIntervalButton = new Button
             {
+                Size = new Size(633, 50),
                 Text = "Изменить маштабирование",
+                Font = new Font("Montserrat", 10, FontStyle.Regular),
                 Dock = DockStyle.Top // Размещаем кнопку в верхней части панели управления
             };
             changeIntervalButton.Click += ChangeIntervalButton_Click; // Устанавливаем обработчик события Click для кнопки

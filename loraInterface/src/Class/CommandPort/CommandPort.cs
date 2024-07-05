@@ -1,109 +1,122 @@
 ﻿using System.IO.Ports;
 using System.Text.RegularExpressions;
 
-public class CommandPort
+public class PortManagement
 {
-    private SerialPort serialPort; // Последовательный порт для взаимодействия
-    private StreamWriter writer; // Поток для записи в файл
-    private object lockObject = new object(); // Объект для синхронизации доступа
+    private SerialPort serialPortFirst;
+    private SerialPort serialPortSecond;
+    private object lockObject = new object();
 
-    public string command = ""; // Переменная для хранения текущей команды
-    public bool sendData = false; // Флаг для указания на необходимость отправки данных
-    public string sendDataState = ""; // Флаг для указания на необходимость отправки данных
+    public string command = "";
+    public bool sendData = false;
+    public string sendDataState = "";
 
-    // Конструктор класса CommandPort
-    public CommandPort(string portName = "COM5", int baudRate = 115200, Parity parity = Parity.None, int dataBits = 8, StopBits stopBits = StopBits.One)
+    private string port_first;
+    private string port_second;
+
+    public string port_first_open = "Не подключен";
+    public string port_second_open = "Не подключен";
+
+    public PortManagement()
     {
-        serialPort = new SerialPort(portName, baudRate, parity, dataBits, stopBits);
+        port_first = "COM9";
+        port_second = "COM11";
+
+        int baudRate = 115200;
+        Parity parity = Parity.None;
+        int dataBits = 8;
+        StopBits stopBits = StopBits.One;
+
+        serialPortFirst = new SerialPort(port_first, baudRate, parity, dataBits, stopBits);
+        serialPortSecond = new SerialPort(port_second, baudRate, parity, dataBits, stopBits);
     }
 
-    // Метод для открытия последовательного порта
-    public void OpenPort()
+    public void OpenPorts()
     {
         try
         {
-            serialPort.Open();
-            //MessageBox.Show($"Порт {serialPort.PortName} успешно открыт.", "Информация", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            if (serialPortFirst != null && !serialPortFirst.IsOpen)
+            {
+                serialPortFirst.Open();
+                port_first_open = "Подключен";
+            }
+        }
+        catch (Exception)
+        {
+            port_first_open = "Не подключен";
+        }
+    }
+
+    public void ClosePorts()
+    {
+        if (serialPortFirst.IsOpen)
+        {
+            serialPortFirst.Close();
+            port_first_open = "Не подключен";
+        }
+
+        if (serialPortSecond.IsOpen)
+        {
+            serialPortSecond.Close();
+            port_second_open = "Не подключен";
+        }
+    }
+
+    public void ReadData()
+    {
+        try
+        {
+            if (serialPortFirst.IsOpen)
+            {
+                lock (lockObject)
+                {
+                    if (sendData)
+                    {
+                        Thread.Sleep(1000);
+                        SendCommand(command);
+                        sendData = false;
+                    }
+                }
+
+                var dataFirst = serialPortFirst.ReadLine().Trim();
+                ProcessData(dataFirst);
+                LogDataToFile(dataFirst);
+            }
+        }
+        catch (TimeoutException)
+        {
+            MessageBox.Show("Тайм-аут при чтении из порта.", "Предупреждение", MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }
         catch (Exception e)
         {
-            MessageBox.Show($"Ошибка при открытии порта {serialPort.PortName}: {e.Message}", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            MessageBox.Show($"Ошибка при чтении из порта: {e.Message}", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
     }
 
-    // Метод для закрытия последовательного порта
-    public void ClosePort()
+    private void ProcessData(string data)
     {
-        if (serialPort.IsOpen)
+        if (data == "NOT SEND")
         {
-            serialPort.Close();
-            MessageBox.Show($"Порт {serialPort.PortName} закрыт.", "Информация", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            sendDataState = "Данные не получены! Повторная отправка...";
+            Thread.Sleep(5000);
+            SendCommand(command);
         }
-    }
-
-    // Метод для чтения данных с последовательного порта
-public void ReadData()
-{
-    try
-    {
-        if (serialPort.IsOpen)
+        else if (Regex.IsMatch(data, @"^Receive .+ rssi dbm : -\d+ signal rssi dbm : -\d+ snr db : \d+$"))
         {
-            lock (lockObject)
-            {
-                if (sendData)
-                {
-                    Thread.Sleep(1000);
-                    // Отправляем команду, если флаг sendData равен true
-                    SendCommand(command);
-                    sendData = false; // Сбрасываем флаг после отправки команды
-                }
-            }
-
-            var data = serialPort.ReadLine().Trim();
-
-            // Обработка принятых сообщений
-            if (data == "NOT SEND")
-            {
-                    // Повторная отправка последней команды
-                    sendDataState = "Данные не получены! Повторая отправка...";
-                    Thread.Sleep(5000);
-                    SendCommand(command);
-            }
-            else if (Regex.IsMatch(data, @"^Receive .+ rssi dbm : -\d+ signal rssi dbm : -\d+ snr db : \d+$"))
-            {
-                    sendDataState = "Данные получены!";
-                    Thread.Sleep(5000);
-                    sendDataState = "";
-                    // Сообщение о принятии команды
-                    //MessageBox.Show("Команда принята.", "Информация", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-
-            // Логирование принятых данных
-            UpdateFromMessage(data);
-            LogDataToFile(data);
+            sendDataState = "Данные получены!";
+            Thread.Sleep(5000);
+            sendDataState = "";
         }
-        else
-        {
-            MessageBox.Show("Порт не открыт.", "Предупреждение", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-        }
-    }
-    catch (TimeoutException)
-    {
-        MessageBox.Show("Истекло время ожидания при чтении с порта.", "Предупреждение", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-    }
-    catch (Exception e)
-    {
-        MessageBox.Show($"Ошибка при чтении с порта {serialPort.PortName}: {e.Message}", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-    }
-}
 
+        UpdateFromMessage(data);
+    }
 
-    // Метод для записи данных в файл
     private void LogDataToFile(string data)
     {
         try
         {
-            string logFilePath = @"C:\Tree\programming\GitHub\loraInterface\loraInterface\src\Class\CommandPort\received_data.txt";
+            string logFilePath = "D:\\Tree\\I\\library\\Git\\loraInterface\\loraInterface\\src\\Class\\CommandPort\\received_data.txt";
+
             using (StreamWriter writer = new StreamWriter(logFilePath, true))
             {
                 writer.WriteLine($"{DateTime.Now}: {data}");
@@ -115,17 +128,15 @@ public void ReadData()
         }
     }
 
-    // Метод для отправки команды через последовательный порт
     public void SendCommand(string command)
     {
         try
         {
-            if (serialPort.IsOpen)
+            if (serialPortFirst.IsOpen)
             {
                 sendDataState = "Отправка...";
-                serialPort.WriteLine(command);
-                sendDataState = "Обрабатывается...";
-                //MessageBox.Show($"Команда '{command}' отправлена.", "Информация", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                serialPortFirst.WriteLine(command);
+                sendDataState = "Обработка...";
             }
             else
             {
@@ -138,17 +149,15 @@ public void ReadData()
         }
     }
 
-    // Метод для установки новой команды и установки флага для отправки данных
     public void SetCommand(string newCommand)
     {
         lock (lockObject)
         {
             command = newCommand;
-            sendData = true; // Устанавливаем флаг для указания на необходимость отправки данных
+            sendData = true;
         }
     }
 
-    // Метод для обновления данных на основе полученного сообщения
     public void UpdateFromMessage(string message)
     {
         try
@@ -159,15 +168,13 @@ public void ReadData()
             {
                 if (msg.Contains("//RATATION"))
                 {
-                    // Создаем экземпляр класса TurnData, передавая необходимые аргументы
                     TurnData turnData = new TurnData(false, 0, 0, "");
-                    turnData.ProcessTurnData(msg); // Вызываем метод через экземпляр класса
+                    turnData.ProcessTurnData(msg);
                 }
                 else if (msg.StartsWith("$"))
                 {
-                    // Создаем экземпляр класса NmeaData, передавая необходимые аргументы
                     NmeaData nmeaData = new NmeaData("", new List<string>());
-                    nmeaData.ProcessNmeaData(msg); // Вызываем метод через экземпляр класса
+                    nmeaData.ProcessNmeaData(msg);
                 }
             }
         }
@@ -177,4 +184,42 @@ public void ReadData()
         }
     }
 
+    public bool IsPortFirstOpen()
+    {
+        return serialPortFirst != null && serialPortFirst.IsOpen;
+    }
+
+    public bool IsPortSecondOpen()
+    {
+        return serialPortSecond != null && serialPortSecond.IsOpen;
+    }
+
+    public void TryReconnectPorts()
+    {
+        if (!IsPortFirstOpen())
+        {
+            try
+            {
+                serialPortFirst.Open();
+                port_first_open = "Подключен";
+            }
+            catch (Exception)
+            {
+                port_first_open = "Не подключен";
+            }
+        }
+
+        if (!IsPortSecondOpen())
+        {
+            try
+            {
+                serialPortSecond.Open();
+                port_second_open = "Подключен";
+            }
+            catch (Exception)
+            {
+                port_second_open = "Не подключен";
+            }
+        }
+    }
 }

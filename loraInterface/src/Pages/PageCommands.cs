@@ -1,30 +1,18 @@
-﻿using loraInterface.src.Controls;
-using System;
-using System.Collections.Generic;
-using System.Windows.Forms;
-using Timer = System.Windows.Forms.Timer;
+﻿using Timer = System.Windows.Forms.Timer;
 
 namespace loraInterface.src.Admin
 {
     public partial class PageCommands : UserControl
     {
-        private CommandPort commandPort;
-        private System.Windows.Forms.Timer updateTimer;
+        private PortManagement portManagement;
+        private Timer updateTimer;
         private List<TurnData> turnDataList;
 
 
-        public PageCommands(CommandPort commandPort)
+        public PageCommands(PortManagement portManagement)
         {
             InitializeComponent();
-            this.commandPort = commandPort;
-            labelStateCommand.Text = "";
-
-            updateTimer = new Timer();
-            updateTimer.Interval = 5000; // 5 секунд
-            updateTimer.Tick += new EventHandler(UpdateLabelStateCommand);
-
-            updateTimer.Start();
-
+            this.portManagement = portManagement;
             LoadData(); // Загрузка данных при инициализации
         }
 
@@ -38,39 +26,30 @@ namespace loraInterface.src.Admin
             }
         }
 
-        private void UpdateLabelStateCommand(object sender, EventArgs e)
-        {
-
-                TurnData lastTurnData = turnDataList[turnDataList.Count - 1];
-
-                labelStateCommand.Text = commandPort.sendDataState;
-                turnTrackBar1.Value = lastTurnData.TurnValue; // Обновление значения TurnTrackBar
-            
-        }
 
         private void buttonComandOff_Click(object sender, EventArgs e)
         {
-            commandPort.SetCommand("/CMD/SET/RATATION/OFF/\r");
+            portManagement.SetCommand("/CMD/SET/RATATION/OFF/\r");
         }
 
         private void buttonComandOn_Click(object sender, EventArgs e)
         {
-            commandPort.SetCommand("/CMD/SET/RATATION/ON/\r");
+            portManagement.SetCommand("/CMD/SET/RATATION/ON/\r");
         }
 
         private void buttonComandTurn_Click(object sender, EventArgs e)
         {
-            commandPort.SetCommand($"/CMD/SET/TURN/{turnTrackBar1.Value}/\r");
+            portManagement.SetCommand($"/CMD/SET/TURN/{turnTrackBar1.Value}/\r");
         }
 
         private void buttonComandReset_Click(object sender, EventArgs e)
         {
-            commandPort.SetCommand("/CMD/SET/RESET/\r");
+            portManagement.SetCommand("/CMD/SET/RESET/\r");
         }
 
         private void buttonComand5_Click(object sender, EventArgs e)
         {
-            commandPort.SetCommand("/CMD/SET/REPORTRERUN/\r");
+            portManagement.SetCommand("/CMD/SET/REPORTRERUN/\r");
         }
     }
 }

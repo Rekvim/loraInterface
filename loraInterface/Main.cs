@@ -1,30 +1,54 @@
-using System;
-using System.IO.Ports;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using loraInterface.src.Admin;
 using loraInterface.src.Controls;
 using loraInterface.src.Pages;
+using Timer = System.Windows.Forms.Timer;
 
 namespace loraInterface
 {
     public partial class Main : Form
     {
-        private CommandPort commandPort;
+        private PortManagement portManagement;
+        private Timer updateTimer;
 
         public Main()
         {
             InitializeComponent();
-            commandPort = new CommandPort();
+
+            updateTimer = new Timer();
+            updateTimer.Interval = 1000; // 1 секунд
+            updateTimer.Tick += new EventHandler(UpdateLabelStateCommand);
+
+            updateTimer.Start();
+
+            portManagement = new PortManagement();
+            statusBar1.com_first_port_connection_value_text = portManagement.port_first_open;
+            statusBar1.com_second_port_connection_value_text = portManagement.port_second_open;
+            statusBar1.status_command_text = "";
+            statusBar1.status_command_value_text = portManagement.sendDataState;
+        }
+
+        private void UpdateLabelStateCommand(object sender, EventArgs e)
+        {
+            portManagement.TryReconnectPorts();
+
+            statusBar1.com_first_port_connection_value_text = portManagement.port_first_open;
+            statusBar1.com_second_port_connection_value_text = portManagement.port_second_open;
+            statusBar1.status_command_value_text = portManagement.sendDataState;
+            if (portManagement.sendDataState != "")
+            {
+                statusBar1.status_command_text = "Состояние команды";
+            }
+            else
+            {
+                statusBar1.status_command_text = "";
+            }
         }
 
         private void Main_Load(object sender, EventArgs e)
         {
-            // Запускаем обработку COM порта при загрузке формы
-            if (commandPort != null)
+            if (portManagement != null)
             {
-                commandPort.OpenPort();
+                portManagement.OpenPorts();
                 Task.Run(() => ReadDataFromPort());
             }
             else
@@ -37,8 +61,7 @@ namespace loraInterface
         {
             while (true)
             {
-                commandPort?.ReadData(); 
-                // Делаем задержку в 1 секунду
+                portManagement?.ReadData();
                 Thread.Sleep(1000);
             }
         }
@@ -53,14 +76,13 @@ namespace loraInterface
 
         private void buttonNavTurnInfo_Click(object sender, EventArgs e)
         {
-            // Переключаемся на страницу с информацией о поворотах
             PageTurnInfo turn_info = new PageTurnInfo();
             AddUserControl(turn_info);
         }
 
         private void buttonNavComands_Click(object sender, EventArgs e)
         {
-            PageCommands page_commands = new PageCommands(commandPort);
+            PageCommands page_commands = new PageCommands(portManagement);
             AddUserControl(page_commands);
         }
 

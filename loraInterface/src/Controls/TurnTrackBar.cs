@@ -85,7 +85,7 @@ namespace loraInterface.src.Controls
         // Colors
         public Color BorderColor = Color.Black;
         public Color ColorTrack = Color.FromArgb(219, 219, 219);
-        public Color BackColor = Color.FromArgb(255, 255, 255);
+        public Color BackColor = Color.FromArgb(245, 245, 245);
         public Color ColorThumb = Color.FromArgb(125, 125, 125);
 
         protected override void OnPaint(PaintEventArgs e)

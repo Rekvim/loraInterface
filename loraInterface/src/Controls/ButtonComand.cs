@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿
 using System.Drawing.Drawing2D;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Font = System.Drawing.Font;
+
 
 namespace loraInterface.src.Controls
 {
@@ -13,7 +11,7 @@ namespace loraInterface.src.Controls
         // Collors
         public Color BorderColor = Color.Black;
         public Color backColorEnter = Color.FromArgb(219, 219, 219);
-        public Color backColorLeave = Color.FromArgb(255, 255, 255);
+        public Color backColorLeave = Color.FromArgb(245, 245, 245);
         public Color backColorDown = Color.FromArgb(125, 125, 125);
         // variables
         public int BorderSize = 1;
@@ -23,9 +21,9 @@ namespace loraInterface.src.Controls
         {
             SetStyle(ControlStyles.AllPaintingInWmPaint | ControlStyles.ResizeRedraw | ControlStyles.SupportsTransparentBackColor | ControlStyles.UserPaint, true);
             DoubleBuffered = true;
-            Font = new Font("Microsoft Sans Serif", 10, FontStyle.Regular);
+            Font = new Font("Montserrat", 10, FontStyle.Regular);
 
-            BackColor = Color.FromArgb(255, 255, 255);
+            BackColor = Color.FromArgb(245, 245, 245);
             Size = new Size(633, 40);
 
             SF.Alignment = StringAlignment.Near;
@@ -66,7 +64,7 @@ namespace loraInterface.src.Controls
         public void SetStateNormal()
         {
             _active = false;
-            BackColor = Color.FromArgb(255, 255, 255);
+            BackColor = Color.FromArgb(245, 245, 245);
         }
         protected override void OnPaint(PaintEventArgs e)
         {

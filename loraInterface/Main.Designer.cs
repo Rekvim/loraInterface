@@ -34,28 +34,32 @@
             buttonNavTurnChart = new src.Controls.ButtonNav();
             buttonNavComands = new src.Controls.ButtonNav();
             buttonNavTurnInfo = new src.Controls.ButtonNav();
+            panelStatus = new Panel();
+            statusBar1 = new src.Controls.StatusBar();
             panelMain.SuspendLayout();
             panelBar.SuspendLayout();
+            panelStatus.SuspendLayout();
             SuspendLayout();
             // 
             // panelMain
             // 
             panelMain.Controls.Add(panelContent);
             panelMain.Controls.Add(panelBar);
-            panelMain.Dock = DockStyle.Fill;
+            panelMain.Dock = DockStyle.Top;
             panelMain.Location = new Point(0, 0);
-            panelMain.Margin = new Padding(3, 2, 3, 2);
+            panelMain.Margin = new Padding(4, 3, 4, 3);
             panelMain.Name = "panelMain";
-            panelMain.Size = new Size(859, 422);
+            panelMain.Size = new Size(1227, 542);
             panelMain.TabIndex = 0;
             // 
             // panelContent
             // 
             panelContent.Dock = DockStyle.Fill;
-            panelContent.Location = new Point(192, 0);
-            panelContent.Margin = new Padding(3, 2, 3, 2);
+            panelContent.Location = new Point(274, 0);
+            panelContent.Margin = new Padding(4, 3, 4, 3);
             panelContent.Name = "panelContent";
-            panelContent.Size = new Size(667, 422);
+            panelContent.Padding = new Padding(20, 0, 20, 0);
+            panelContent.Size = new Size(953, 542);
             panelContent.TabIndex = 1;
             // 
             // panelBar
@@ -65,66 +69,94 @@
             panelBar.Controls.Add(buttonNavTurnInfo);
             panelBar.Dock = DockStyle.Left;
             panelBar.Location = new Point(0, 0);
-            panelBar.Margin = new Padding(3, 2, 3, 2);
+            panelBar.Margin = new Padding(4, 3, 4, 3);
             panelBar.Name = "panelBar";
-            panelBar.Size = new Size(192, 422);
+            panelBar.Padding = new Padding(20, 0, 20, 0);
+            panelBar.Size = new Size(274, 542);
             panelBar.TabIndex = 0;
             // 
             // buttonNavTurnChart
             // 
-            buttonNavTurnChart.BackColor = Color.FromArgb(255, 255, 255);
+            buttonNavTurnChart.BackColor = Color.WhiteSmoke;
             buttonNavTurnChart.Dock = DockStyle.Top;
-            buttonNavTurnChart.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            buttonNavTurnChart.Font = new Font("Montserrat", 10F);
             buttonNavTurnChart.ForeColor = Color.Black;
-            buttonNavTurnChart.Location = new Point(0, 80);
+            buttonNavTurnChart.Location = new Point(20, 112);
             buttonNavTurnChart.Margin = new Padding(0);
             buttonNavTurnChart.Name = "buttonNavTurnChart";
-            buttonNavTurnChart.Size = new Size(192, 40);
+            buttonNavTurnChart.Size = new Size(234, 56);
             buttonNavTurnChart.TabIndex = 1;
-            buttonNavTurnChart.Text = "График Актульных оборотов";
+            buttonNavTurnChart.Text = "График Акт. оборотов";
             buttonNavTurnChart.Click += buttonNavTurnChart_Click;
             // 
             // buttonNavComands
             // 
-            buttonNavComands.BackColor = Color.FromArgb(255, 255, 255);
+            buttonNavComands.BackColor = Color.WhiteSmoke;
             buttonNavComands.Dock = DockStyle.Top;
-            buttonNavComands.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            buttonNavComands.Font = new Font("Montserrat", 10F);
             buttonNavComands.ForeColor = Color.Black;
-            buttonNavComands.Location = new Point(0, 40);
+            buttonNavComands.Location = new Point(20, 56);
             buttonNavComands.Margin = new Padding(0);
             buttonNavComands.Name = "buttonNavComands";
-            buttonNavComands.Size = new Size(192, 40);
+            buttonNavComands.Size = new Size(234, 56);
             buttonNavComands.TabIndex = 2;
             buttonNavComands.Text = "Команды GPS";
             buttonNavComands.Click += buttonNavComands_Click;
             // 
             // buttonNavTurnInfo
             // 
-            buttonNavTurnInfo.BackColor = Color.FromArgb(255, 255, 255);
+            buttonNavTurnInfo.BackColor = Color.WhiteSmoke;
             buttonNavTurnInfo.Dock = DockStyle.Top;
-            buttonNavTurnInfo.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            buttonNavTurnInfo.Font = new Font("Montserrat", 10F);
             buttonNavTurnInfo.ForeColor = Color.Black;
-            buttonNavTurnInfo.Location = new Point(0, 0);
+            buttonNavTurnInfo.Location = new Point(20, 0);
             buttonNavTurnInfo.Margin = new Padding(0);
             buttonNavTurnInfo.Name = "buttonNavTurnInfo";
-            buttonNavTurnInfo.Size = new Size(192, 40);
+            buttonNavTurnInfo.Size = new Size(234, 56);
             buttonNavTurnInfo.TabIndex = 0;
             buttonNavTurnInfo.Text = "Информация о турбине";
             buttonNavTurnInfo.Click += buttonNavTurnInfo_Click;
             // 
+            // panelStatus
+            // 
+            panelStatus.Controls.Add(statusBar1);
+            panelStatus.Dock = DockStyle.Bottom;
+            panelStatus.Font = new Font("Montserrat", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            panelStatus.Location = new Point(0, 541);
+            panelStatus.Margin = new Padding(4, 3, 4, 3);
+            panelStatus.Name = "panelStatus";
+            panelStatus.Size = new Size(1227, 50);
+            panelStatus.TabIndex = 3;
+            // 
+            // statusBar1
+            // 
+            statusBar1.com_first_port_connection_value_text = "value";
+            statusBar1.com_second_port_connection_value_text = "value";
+            statusBar1.Dock = DockStyle.Fill;
+            statusBar1.Location = new Point(0, 0);
+            statusBar1.Name = "statusBar1";
+            statusBar1.Size = new Size(1227, 50);
+            statusBar1.status_command_value_text = "value";
+            statusBar1.TabIndex = 0;
+            statusBar1.Text = "statusBar1";
+            // 
             // Main
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(10F, 21F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.White;
-            ClientSize = new Size(859, 422);
+            AutoSize = true;
+            BackColor = Color.WhiteSmoke;
+            ClientSize = new Size(1227, 591);
+            Controls.Add(panelStatus);
             Controls.Add(panelMain);
-            Margin = new Padding(3, 2, 3, 2);
+            Margin = new Padding(4, 3, 4, 3);
             Name = "Main";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "loraInterface";
             Load += Main_Load;
             panelMain.ResumeLayout(false);
             panelBar.ResumeLayout(false);
+            panelStatus.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -136,5 +168,7 @@
         private src.Controls.ButtonNav buttonNavTurnInfo;
         private src.Controls.ButtonNav buttonNavTurnChart;
         private src.Controls.ButtonNav buttonNavComands;
+        private Panel panelStatus;
+        private src.Controls.StatusBar statusBar1;
     }
 }
