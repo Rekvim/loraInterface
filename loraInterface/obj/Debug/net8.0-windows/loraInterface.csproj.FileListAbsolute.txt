@@ -200,3 +200,4 @@ D:\Tree\I\library\Git\loraInterface\loraInterface\bin\Debug\net8.0-windows\zh-Ha
 D:\Tree\I\library\Git\loraInterface\loraInterface\bin\Debug\net8.0-windows\zh-Hant\Microsoft.CodeAnalysis.VisualBasic.resources.dll
 D:\Tree\I\library\Git\loraInterface\loraInterface\obj\Debug\net8.0-windows\loraInterface.src.Pages.TurnChart.resources
 D:\Tree\I\library\Git\loraInterface\loraInterface\obj\Debug\net8.0-windows\loraInterface.src.Controls.CellParamsInfo.resources
+C:\Tree\programming\GitHub\loraInterface\loraInterface\obj\Debug\net8.0-windows\loraInterface.src.Controls.CellParamsInfo.resources

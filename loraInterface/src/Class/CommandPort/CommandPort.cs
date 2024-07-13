@@ -20,7 +20,7 @@ public class PortManagement
     public PortManagement()
     {
         port_first = "COM9";
-        port_second = "COM11";
+        port_second = "COM5";
 
         int baudRate = 115200;
         Parity parity = Parity.None;
